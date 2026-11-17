@@ -2,7 +2,7 @@
 
 ## Guidance
 
-Start with [Project.md](../../Project.md). CareerAtlas connects experience, project demonstrations, skills, and evidence. English is the working language. P0 is the implementation target; P1/P2 remain planned.
+Start with [Project.md](../../Project.md). CareerAtlas connects experience, project demonstrations, skills, and evidence. English is the working language. P0 is locally accepted; P1 implementation is authorized and in progress. P2 remains planned.
 
 - [Product scope, roles, and ownership](KB_CareerAtlas_Product.md)
 - [All five scenarios and 39 functional requirements](KB_CareerAtlas_FunctionalRequirements.md)
@@ -12,6 +12,7 @@ Start with [Project.md](../../Project.md). CareerAtlas connects experience, proj
 - [P0 implementation design, schema, atomic operations, and coverage review](KB_CareerAtlas_Implementation_P0.md)
 - [P0 frontend visual system and browser behavior coverage](KB_CareerAtlas_Frontend_P0.md)
 - [P0 Agent integration decision, lifecycle, UI and acceptance](KB_CareerAtlas_Agent_P0.md)
+- [P1 domain, owner assistance, preparation and opportunity implementation](KB_CareerAtlas_Implementation_P1.md)
 
 ## CareerAtlas
 

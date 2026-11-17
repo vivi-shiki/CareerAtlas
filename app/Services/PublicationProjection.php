@@ -41,7 +41,9 @@ final class PublicationProjection
             ->whereColumn('e.access_epoch', 'pi.source_access_epoch')->orderBy('pi.sort_order')->get(['pi.payload'])
             ->map(fn ($r) => json_decode($r->payload, true, 512, JSON_THROW_ON_ERROR))->all();
 
-        return ['slug' => $slug, 'version' => $pub->version, 'published_at' => $pub->published_at, 'profile' => $snapshot['profile'], 'items' => $items, 'skills' => $this->skills($items)];
+        $introduction = ! array_diff($snapshot['introduction_sources'], array_column($items, 'id')) ? $snapshot['introduction'] : '';
+
+        return ['slug' => $slug, 'version' => $pub->version, 'published_at' => $pub->published_at, 'profile' => $snapshot['profile'], 'introduction' => $introduction, 'items' => $items, 'skills' => $this->skills($items)];
     }
 
     public function citation(string $slug, string $id): array

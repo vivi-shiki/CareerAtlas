@@ -127,12 +127,12 @@ final class ExperienceService
                 $data['provenance'] = 'supplied_link';
             }
             if ($action === 'create') {
-                Store::insert('evidence',$data + ['experience_id' => $experience['id']]);
+                Store::insert('evidence', $data + ['experience_id' => $experience['id']]);
             } else {
-                Store::update('evidence',$evidence['id'],$data + ['version' => $evidence['version'] + 1]);
+                Store::update('evidence', $evidence['id'], $data + ['version' => $evidence['version'] + 1]);
             }
         }
 
-        return $this->touchDraft($owner,$experience);
+        return $this->touchDraft($owner, $experience);
     }
 }

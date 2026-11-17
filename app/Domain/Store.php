@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 final class Store
 {
-    private const JSON = ['occurrence', 'contact_links', 'payload', 'profile', 'selection', 'response', 'metadata', 'source_versions'];
+    private const JSON = ['occurrence', 'contact_links', 'payload', 'profile', 'selection', 'response', 'metadata', 'source_versions', 'draft', 'questions', 'sources', 'attempts', 'introduction_sources', 'context', 'output'];
 
     public static function decode(object|array $row): array
     {

@@ -1,0 +1,1298 @@
+{
+  "create_capture": {
+    "description": "create capture. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "target_language": {
+          "type": "string",
+          "enum": [
+            "en",
+            "zh",
+            "ja"
+          ]
+        },
+        "draft": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "personal_action": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 20000
+            },
+            "result": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 20000
+            },
+            "validation": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 20000
+            },
+            "remaining_work": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 20000
+            },
+            "title": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 200
+            },
+            "record_type": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "work_contribution",
+                "learning",
+                "problem_solving",
+                null
+              ]
+            },
+            "occurrence": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "start": {
+                  "type": "string"
+                },
+                "precision": {
+                  "type": "string",
+                  "enum": [
+                    "year",
+                    "month",
+                    "day"
+                  ]
+                },
+                "end": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "end_precision": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "enum": [
+                    "year",
+                    "month",
+                    "day",
+                    null
+                  ]
+                },
+                "ongoing": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "start",
+                "precision"
+              ]
+            },
+            "skill_suggestions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 100
+              },
+              "maxItems": 20
+            }
+          },
+          "required": []
+        }
+      },
+      "required": [
+        "project_id",
+        "notes"
+      ]
+    }
+  },
+  "update_capture": {
+    "description": "update capture. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "target_language": {
+          "type": "string",
+          "enum": [
+            "en",
+            "zh",
+            "ja"
+          ]
+        },
+        "draft": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "personal_action": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 20000
+            },
+            "result": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 20000
+            },
+            "validation": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 20000
+            },
+            "remaining_work": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 20000
+            },
+            "title": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 200
+            },
+            "record_type": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "work_contribution",
+                "learning",
+                "problem_solving",
+                null
+              ]
+            },
+            "occurrence": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "start": {
+                  "type": "string"
+                },
+                "precision": {
+                  "type": "string",
+                  "enum": [
+                    "year",
+                    "month",
+                    "day"
+                  ]
+                },
+                "end": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "end_precision": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "enum": [
+                    "year",
+                    "month",
+                    "day",
+                    null
+                  ]
+                },
+                "ongoing": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "start",
+                "precision"
+              ]
+            },
+            "skill_suggestions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 100
+              },
+              "maxItems": 20
+            }
+          },
+          "required": []
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "get_capture": {
+    "description": "get capture. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "list_captures": {
+    "description": "list captures. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {},
+      "required": []
+    }
+  },
+  "find_capture_duplicates": {
+    "description": "find capture duplicates. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "apply_capture": {
+    "description": "apply capture. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "merge_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "merge_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "skill_names": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "maxItems": 20
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "get_experience_history": {
+    "description": "get experience history. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "create_preparation": {
+    "description": "create preparation. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "topic": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "company": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "interview_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 10
+        },
+        "requirements": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "source_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 2000
+        },
+        "target_language": {
+          "type": "string",
+          "enum": [
+            "en",
+            "zh",
+            "ja"
+          ]
+        },
+        "answer_length": {
+          "type": "string",
+          "enum": [
+            "short",
+            "standard"
+          ]
+        },
+        "experience_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "maxItems": 30,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "topic"
+      ]
+    }
+  },
+  "update_preparation": {
+    "description": "update preparation. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "topic": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "company": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "interview_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 10
+        },
+        "requirements": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "source_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 2000
+        },
+        "target_language": {
+          "type": "string",
+          "enum": [
+            "en",
+            "zh",
+            "ja"
+          ]
+        },
+        "answer_length": {
+          "type": "string",
+          "enum": [
+            "short",
+            "standard"
+          ]
+        },
+        "experience_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "maxItems": 30,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "get_preparation": {
+    "description": "get preparation. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "list_preparations": {
+    "description": "list preparations. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {},
+      "required": []
+    }
+  },
+  "create_prepared_answer": {
+    "description": "create prepared answer. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "preparation_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "question": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "answer": {
+          "type": "string",
+          "maxLength": 16000
+        },
+        "experience_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "maxItems": 30,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "preparation_id",
+        "question"
+      ]
+    }
+  },
+  "update_prepared_answer": {
+    "description": "update prepared answer. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "question": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "answer": {
+          "type": "string",
+          "maxLength": 16000
+        },
+        "experience_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "maxItems": 30,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "get_prepared_answer": {
+    "description": "get prepared answer. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "confirm_prepared_answer": {
+    "description": "confirm prepared answer. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "get_answer_history": {
+    "description": "get answer history. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "start_practice": {
+    "description": "start practice. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "preparation_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "maxItems": 20,
+          "minItems": 1
+        }
+      },
+      "required": [
+        "preparation_id",
+        "questions"
+      ]
+    }
+  },
+  "get_practice": {
+    "description": "get practice. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "answer_practice": {
+    "description": "answer practice. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "answer": {
+          "type": "string",
+          "maxLength": 12000
+        }
+      },
+      "required": [
+        "id",
+        "expected_version",
+        "answer"
+      ]
+    }
+  },
+  "next_practice": {
+    "description": "next practice. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "stop_practice": {
+    "description": "stop practice. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "save_practice": {
+    "description": "save practice. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "discard_practice": {
+    "description": "discard practice. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "create_opportunity": {
+    "description": "create opportunity. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "direction": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "requirements": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "deadline": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 10
+        },
+        "target_language": {
+          "type": "string",
+          "enum": [
+            "en",
+            "zh",
+            "ja"
+          ]
+        },
+        "introduction": {
+          "type": "string",
+          "maxLength": 8000
+        },
+        "include_introduction": {
+          "type": "boolean"
+        },
+        "selection": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "profile_fields": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "display_name",
+                  "direction",
+                  "biography",
+                  "preferred_language",
+                  "contact_links"
+                ]
+              }
+            },
+            "items": {
+              "type": "array",
+              "minItems": 0,
+              "maxItems": 100,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "experience_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "fields": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "title",
+                        "record_type",
+                        "occurrence",
+                        "personal_action",
+                        "result",
+                        "validation",
+                        "remaining_work",
+                        "skills",
+                        "evidence"
+                      ]
+                    }
+                  },
+                  "project_fields": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "title",
+                        "type",
+                        "role",
+                        "background",
+                        "team_outcome",
+                        "occurrence"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "experience_id",
+                  "fields",
+                  "project_fields"
+                ]
+              }
+            }
+          },
+          "required": [
+            "profile_fields",
+            "items"
+          ]
+        }
+      },
+      "required": [
+        "title",
+        "direction"
+      ]
+    }
+  },
+  "update_opportunity": {
+    "description": "update opportunity. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "direction": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "requirements": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "deadline": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 10
+        },
+        "target_language": {
+          "type": "string",
+          "enum": [
+            "en",
+            "zh",
+            "ja"
+          ]
+        },
+        "introduction": {
+          "type": "string",
+          "maxLength": 8000
+        },
+        "include_introduction": {
+          "type": "boolean"
+        },
+        "selection": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "profile_fields": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "display_name",
+                  "direction",
+                  "biography",
+                  "preferred_language",
+                  "contact_links"
+                ]
+              }
+            },
+            "items": {
+              "type": "array",
+              "minItems": 0,
+              "maxItems": 100,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "experience_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "fields": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "title",
+                        "record_type",
+                        "occurrence",
+                        "personal_action",
+                        "result",
+                        "validation",
+                        "remaining_work",
+                        "skills",
+                        "evidence"
+                      ]
+                    }
+                  },
+                  "project_fields": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "title",
+                        "type",
+                        "role",
+                        "background",
+                        "team_outcome",
+                        "occurrence"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "experience_id",
+                  "fields",
+                  "project_fields"
+                ]
+              }
+            }
+          },
+          "required": [
+            "profile_fields",
+            "items"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "get_opportunity": {
+    "description": "get opportunity. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "list_opportunities": {
+    "description": "list opportunities. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {},
+      "required": []
+    }
+  },
+  "confirm_introduction": {
+    "description": "confirm introduction. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "preview_opportunity": {
+    "description": "preview opportunity. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "publish_opportunity": {
+    "description": "publish opportunity. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "preview_digest": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "idempotency_key": {
+          "type": "string",
+          "maxLength": 100
+        }
+      },
+      "required": [
+        "id",
+        "expected_version",
+        "preview_digest",
+        "idempotency_key"
+      ]
+    }
+  },
+  "revoke_opportunity": {
+    "description": "revoke opportunity. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "archive_opportunity": {
+    "description": "archive opportunity. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "restore_opportunity": {
+    "description": "restore opportunity. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "export_opportunity": {
+    "description": "export opportunity. Explicit authenticated-owner operation; never accepts owner IDs. AI drafts never publish automatically.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "source_digest": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "reviewed": {
+          "type": "boolean"
+        },
+        "translations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "key": {
+                "type": "string",
+                "maxLength": 100
+              },
+              "text": {
+                "type": "string",
+                "maxLength": 20000
+              }
+            },
+            "required": [
+              "key",
+              "text"
+            ]
+          },
+          "maxItems": 1000
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  }
+}

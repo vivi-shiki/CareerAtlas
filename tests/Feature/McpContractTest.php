@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Domain\OperationCatalog;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -32,7 +33,7 @@ class McpContractTest extends TestCase
             ->assertOk()->assertJsonPath('result.protocolVersion', '2025-11-25');
         $tools = $this->rpc('tools/list')->assertOk()->json('result.tools');
         $names = array_column($tools, 'name');
-        $catalog = json_decode(file_get_contents(base_path('contracts/operations.json')), true);
+        $catalog = OperationCatalog::all();
         $this->assertEqualsCanonicalizing(array_keys($catalog), $names);
         foreach ($tools as $tool) {
             $this->assertFalse($tool['inputSchema']['additionalProperties']);
@@ -43,6 +44,6 @@ class McpContractTest extends TestCase
         $this->assertDatabaseHas('projects', ['title' => 'MCP project', 'owner_id' => $user->id]);
         $this->rpc('tools/call', ['name' => 'create_project', 'arguments' => ['title' => 'Invalid']])
             ->assertOk()->assertJsonPath('result.isError', true);
-        $this->assertDatabaseCount('projects',1);
+        $this->assertDatabaseCount('projects', 1);
     }
 }

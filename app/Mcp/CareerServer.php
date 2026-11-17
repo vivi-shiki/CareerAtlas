@@ -13,7 +13,9 @@ final class CareerServer extends Server
 
     protected string $instructions = 'Authenticated owner operations for explicit development workflows. Publication is an explicit mutation. Public portfolio agents must never receive these mutation tools.';
 
-    public int $defaultPaginationLength = 50;
+    public int $defaultPaginationLength = 100;
+
+    public int $maxPaginationLength = 100;
 
     protected function boot(): void
     {

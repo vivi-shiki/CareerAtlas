@@ -55,8 +55,12 @@ final class OperationDispatcher
                 'list_public_skills' => app(PublicationProjection::class)->publicPortfolio($input['slug'])['skills'],
                 'get_public_skill' => app(PublicationProjection::class)->skill($input['slug'], $input['id']),
                 'get_public_citation' => app(PublicationProjection::class)->citation($input['slug'], $input['id']),
+                default => app(P1Dispatcher::class)->execute($owner, $operation, $input),
             };
             if (! $definition['read_only']) {
+                if (in_array($operation, ['create_experience', 'update_experience', 'confirm_experience', 'archive_experience', 'restore_experience', 'revoke_experience_access', 'attach_skill', 'detach_skill', 'create_evidence', 'update_evidence', 'delete_evidence'])) {
+                    app(HistoryService::class)->record($owner, $result['id'], $operation);
+                }
                 Store::audit($owner, $operation, 'operation', $result['id'] ?? null, isset($result['version']) ? ['version' => $result['version']] : []);
             }
 

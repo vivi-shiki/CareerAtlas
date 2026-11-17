@@ -15,10 +15,14 @@ final class PublicationService
         return array_intersect_key($input, array_flip(['profile_fields', 'items', 'publication_id']));
     }
 
-    public function preview(int $owner, array $input): array
+    public function preview(int $owner, array $input, ?string $opportunityId = null): array
     {
         if (isset($input['publication_id'])) {
             Store::owned('publications', $input['publication_id'], $owner);
+            $opportunity = DB::table('opportunities')->where('publication_id', $input['publication_id'])->first();
+            if ($opportunity && $opportunity->id !== $opportunityId) {
+                throw new DomainError('opportunity_required', 'Review this page in its opportunity.');
+            }
         }
         $profile = $this->profiles->get($owner);
         $profileProjection = array_intersect_key($profile, array_flip($input['profile_fields']));
@@ -50,7 +54,7 @@ final class PublicationService
         return ['portfolio' => $portfolio, 'digest' => $digest, 'references' => $references, 'source_versions' => ['profile' => $profile['version'], 'projects' => array_column($references, 'project_version', 'project_id')]];
     }
 
-    public function publish(int $owner, array $input, bool $republish = false): array
+    public function publish(int $owner, array $input, bool $republish = false, ?string $opportunityId = null): array
     {
         $operation = $republish ? 'republish_publication' : 'publish_publication';
         $hash = hash('sha256', json_encode($input, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE));
@@ -62,7 +66,7 @@ final class PublicationService
 
             return $this->get($owner, json_decode($existing->response, true)['id']);
         }
-        $preview = $this->preview($owner, $input);
+        $preview = $this->preview($owner, $input, $opportunityId);
         if (! hash_equals($preview['digest'], $input['preview_digest'])) {
             throw new DomainError('preview_conflict', 'The preview has changed. Review it again before publishing.');
         }
@@ -118,7 +122,7 @@ final class PublicationService
 
     public function listing(int $owner): array
     {
-        return DB::table('publications')->where('owner_id', $owner)->orderByDesc('created_at')->get()->map(fn ($r) => $this->get($owner, $r->id))->all();
+        return DB::table('publications')->where('owner_id', $owner)->whereNotIn('id', DB::table('opportunities')->whereNotNull('publication_id')->select('publication_id'))->orderByDesc('created_at')->get()->map(fn ($r) => $this->get($owner, $r->id))->all();
     }
 
     public function revoke(int $owner, array $input): array
@@ -127,9 +131,9 @@ final class PublicationService
         if ($pub['state'] === 'revoked' && in_array($input['expected_version'], [$pub['version'], $pub['version'] - 1], true)) {
             return $this->get($owner, $pub['id']);
         }
-        Store::version($pub,$input['expected_version']);
-        Store::update('publications',$pub['id'],['state' => 'revoked', 'version' => $pub['version'] + 1, 'revoked_at' => now()]);
+        Store::version($pub, $input['expected_version']);
+        Store::update('publications', $pub['id'], ['state' => 'revoked', 'version' => $pub['version'] + 1, 'revoked_at' => now()]);
 
-        return $this->get($owner,$pub['id']);
+        return $this->get($owner, $pub['id']);
     }
 }
