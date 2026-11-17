@@ -6,7 +6,7 @@
 - Follow the GacUI documentation organization, adapted to CareerAtlas.
 - Preserve the five scenarios and the distinction between P0, P1, and P2.
 - Keep career assertions connected to owner-controlled evidence.
-- Use AWS as the deployment platform, as explicitly selected on 2026-11-17. Follow the supplied new AWS experience configuration and [deployment constraints](KB_CareerAtlas_Design_Deployment.md).
+- Keep shared product/development knowledge in Git and demo-specific environment knowledge in ignored `.local/docs/`, as requested on 2026-11-17. Follow the [documentation boundary](../Guidelines/Documentation.md).
 - Maintain documentation for a standalone product serving recurring individual and organizational workflows.
 
 ## Refinements

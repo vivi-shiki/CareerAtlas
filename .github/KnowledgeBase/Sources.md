@@ -10,7 +10,7 @@ The repository is the product and development documentation for CareerAtlas as a
 
 ## Documentation format reference
 
-The reference is the official [GacUI repository](https://github.com/vczh-libraries/GacUI), inspected through the local checkout at `E:\work\GacUI` at commit `2855659caecbbd97d846aee92c02a4601dd0d8f6`.
+The reference is the official [GacUI repository](https://github.com/vczh-libraries/GacUI), inspected at commit `2855659caecbbd97d846aee92c02a4601dd0d8f6`.
 
 Reference entry points at that revision:
 
@@ -38,10 +38,12 @@ The explanatory content and procedures are authored for CareerAtlas. GacUI's C++
 
 Confirmed from the source: the product objective, five scenarios, feature priorities, acceptance criteria, and PHP/Laravel, Vue 3/TypeScript, PostgreSQL stack.
 
-Confirmed by subsequent product-owner instructions on 2026-11-17: AWS is the deployment platform, and the documentation describes a standalone product. Supplied AWS environment: new AWS experience, CLI profile `default`, selected Region `ap-southeast-2`. These decisions supersede the original open hosting choice; live AWS state has not been verified.
+Confirmed by subsequent product-owner instructions on 2026-11-17: documentation describes a standalone product. Shared technology choices, standards, implementation details, and development requirements belong in Git; actual cloud/API services, credential locations, and demo-specific development issues belong in ignored local documentation. This ownership rule supersedes the earlier placement of deployment-environment details in shared documents.
+
+Confirmed on 2026-11-18: UI/UX specifications, mockups, and flow diagrams are public product design references. Local cloud/API settings and credential locations retain their local-only ownership.
 
 Proposed in these documents: module boundaries, logical schema, endpoint shapes, retrieval contracts, agent execution limits, and detailed verification strategy.
 
-Open until implementation: exact runtime/package versions, frontend integration style, AI provider/model, AWS service topology and delivery tooling, and concrete build/test/deployment commands. Inspect current official documentation when making those choices. The source specification is a planning document, not evidence of implementation.
+Open until implementation: exact runtime/package versions, frontend integration style, model adapter implementation, portable delivery tooling, and concrete build/test/deployment commands. Inspect current official documentation when making those choices. The source specification is a planning document, not evidence of implementation.
 
-AWS environment constraints and official references are recorded in [Deployment](KB_CareerAtlas_Design_Deployment.md).
+Shared deployment requirements are recorded in [Deployment](KB_CareerAtlas_Design_Deployment.md). Environment constraints and provider research are maintained locally.

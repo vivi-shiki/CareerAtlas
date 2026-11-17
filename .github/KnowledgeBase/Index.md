@@ -39,9 +39,9 @@ Laravel owns business rules; Vue renders the interface; PostgreSQL stores struct
 
 [Design Explanation](KB_CareerAtlas_Design_Architecture.md)
 
-#### AWS Deployment
+#### Deployment Contract
 
-AWS is the selected deployment platform. The configured selected Region is `ap-southeast-2`. Service topology and release tooling remain implementation decisions within the documented environment constraints.
+Define portable runtime, persistence, configuration, release, and recovery requirements. Actual service selections and environment observations are maintained in ignored local operations documentation.
 
 [Design Explanation](KB_CareerAtlas_Design_Deployment.md)
 
@@ -62,6 +62,12 @@ Apply permission and version checks consistently across pages, retrieval, citati
 Support explicit drafts, clear errors, editable AI output, accessible citations, and manual fallbacks.
 
 [Design Explanation](KB_CareerAtlas_Design_UserExperience.md)
+
+#### UI Framework and Visual Design
+
+Framework recommendation, open-source visual references, screen specifications, responsive behavior, and the UI/UX design pack.
+
+[Design Explanation](KB_CareerAtlas_Design_UIUX.md)
 
 ## Experiences and Learnings
 

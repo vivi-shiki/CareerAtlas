@@ -1,0 +1,27 @@
+digraph G {
+graph [bgcolor="#FFFFFF", pad="0.4", nodesep="0.4", ranksep="0.55", fontname="Arial", fontsize=22, fontcolor="#17221F", labelloc="t", labeljust="l"];
+node [shape=box, style="rounded,filled", fillcolor="#F8FAFC", color="#D7DFDA", fontname="Arial", fontsize=14, fontcolor="#17221F", margin="0.2,0.13"];
+edge [color="#52615A", fontname="Arial", fontsize=11, fontcolor="#52615A", arrowsize=0.7];
+
+label="CareerAtlas / P0\nBrowse, ask, and inspect sources";
+a [label="Open public portfolio link"];
+b [shape=diamond,label="Publication\naccessible?",fillcolor="#FFFBEB"];
+c [label="Neutral unavailable state\nNo private record information",fillcolor="#FEF2F2"];
+d [label="Browse published projects / skills\nOnly authorized snapshot fields"];
+e [label="Ask about this portfolio\nInput + cancel + operational progress"];
+f [shape=diamond,label="Answer path?",fillcolor="#FFFBEB"];
+g [label="Insufficient public information\nDo not infer lack of ability"];
+h [label="Provider unavailable / rate limit\nRetain question; offer retry"];
+i [label="Draft factual answer\nCite permitted source versions"];
+j [shape=diamond,label="Reauthorize sources\nbefore delivery",fillcolor="#FFFBEB"];
+k [label="Show answer + source links\nPersonal action stays distinct",fillcolor="#ECFDF5",color="#047857"];
+l [label="Open numbered citation\nProject + experience + publication time"];
+m [label="Read permitted source detail\nReturn to conversation",fillcolor="#047857",fontcolor="white"];
+a -> b; b -> c [label="No"]; b -> d [label="Yes"]; d -> e -> f;
+f -> g [label="No evidence"]; f -> h [label="Service failure"]; f -> i [label="Sources found"];
+h -> d [label="Browse instead",style=dashed]; g -> d [label="Browse related work",style=dashed];
+i -> j; j -> c [label="Revoked"]; j -> k [label="Allowed"]; k -> l -> m;
+{rank=same;g;h;i}
+note [shape=note,label="Citation clicks are authorized again.\nNo private counts, snippets, titles or existence leaks.\nA visitor conversation does not enter another visitor's scope.",fontsize=12];
+m -> note [style=dashed,arrowhead=none];
+}

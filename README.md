@@ -13,11 +13,16 @@ Documentation foundation only. The application, dependency manifests, database, 
 - PHP / Laravel: authentication, authorization, validation, business logic, APIs, and agent tools.
 - Vue 3 / TypeScript: editing, portfolio presentation, and conversational interfaces.
 - PostgreSQL: structured career records, publication snapshots, and references.
-- Model provider adapter: bounded tool calling and structured answers; provider selection remains open.
+- Model provider adapter: bounded tool calling and structured answers through a server-side integration.
+- Deployment: a configurable application runtime, persistent PostgreSQL, HTTPS delivery, and recoverable releases.
 
-- AWS: selected deployment platform, using the new AWS experience. The configured selected Region is `ap-southeast-2` and the CLI profile is `default`.
+Exact runtime versions and shared implementation choices will be recorded during implementation. Actual hosting services, model subscriptions, and environment settings belong to local operations documentation. See [Deployment contract](.github/KnowledgeBase/KB_CareerAtlas_Design_Deployment.md).
 
-Exact runtime versions and AWS services will be selected and recorded during implementation. The hosting decision does not select an AI provider. See [AWS deployment](.github/KnowledgeBase/KB_CareerAtlas_Design_Deployment.md) for confirmed decisions, environment constraints, and remaining choices.
+## Public and local documentation
+
+Git-tracked root documents, `.github/`, and `design/` form the shared documentation intended for GitHub: requirements, technology choices, architecture, implementation contracts, engineering standards, reusable development tasks, and UI/UX product design references.
+
+`.local/docs/` is the ignored local companion for a particular demo: actual cloud/API services, environment restrictions, quotas, credential locations, and deployment troubleshooting. Start with its `README.md` when working on that environment. It is intentionally absent from a fresh clone; shared documentation must remain usable without it. Never put secret values in either documentation set. See [Documentation](.github/Guidelines/Documentation.md) for the ownership rules.
 
 ## Start here
 
@@ -27,6 +32,18 @@ Exact runtime versions and AWS services will be selected and recorded during imp
 - [Knowledge base and functional specifications](.github/KnowledgeBase/Index.md)
 - [Implementation backlog](.github/TaskLogs/Copilot_Scrum.md)
 - [Documentation provenance](.github/KnowledgeBase/Sources.md)
+
+## Product design references
+
+The UI/UX suite shows how the requirements translate into a private contribution editor, an explicit publication preview, and a public portfolio with source-cited answers. These are design references with fictional data, not implemented application screens.
+
+![Public portfolio and source-cited question answering design](design/2026-11-17/mockups/03-public-portfolio.png)
+
+- [Design pack: three UI mockups and four UX flows](design/2026-11-17/README.md)
+- [UI framework, screen specifications, and requirement mapping](.github/KnowledgeBase/KB_CareerAtlas_Design_UIUX.md)
+- [Page states and interaction requirements](.github/KnowledgeBase/KB_CareerAtlas_Design_UserExperience.md)
+
+The static `design/2026-11-17/index.html` gallery can be opened after cloning. The Markdown design pack is the GitHub-readable entry point; publishing these files does not deploy a website.
 
 ## Documentation workflow
 
@@ -50,7 +67,7 @@ Natural-language requests also work. A request to write documentation does not a
 Run from PowerShell:
 
 ```powershell
-& 'E:\work\CareerAtlas\.github\Scripts\Validate-Documentation.ps1'
+& './.github/Scripts/Validate-Documentation.ps1'
 ```
 
-The script also works from another checkout location when invoked using that checkout's path. It checks local Markdown links, required files, requirement identifiers, workflow markers, and an English-baseline character guard. It does not check external URLs, heading anchors, or application behavior.
+Run from the repository root. The script checks local Markdown links, required files, requirement identifiers, workflow markers, the public/local documentation boundary, and an English-baseline character guard. It does not check external URLs, heading anchors, or application behavior.

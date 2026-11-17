@@ -1,6 +1,6 @@
 # Task Logs
 
-These files follow GacUI's stage markers and record CareerAtlas work in English.
+These files follow GacUI's stage markers and record reusable CareerAtlas development work in English. Demo-specific setup, provider investigations, credential locations, and operational problems belong in ignored `.local/docs/` logs. Promote only sanitized product findings into this directory.
 
 | File | Purpose |
 | --- | --- |
@@ -10,9 +10,12 @@ These files follow GacUI's stage markers and record CareerAtlas work in English.
 | [Copilot_Execution.md](Copilot_Execution.md) | Actual progress and verification evidence |
 | [Copilot_Investigate.md](Copilot_Investigate.md) | Current reproduction and hypotheses, if any |
 | [Copilot_KB.md](Copilot_KB.md) | Knowledge-base changes and evidence |
-| [2026-11-17-product-and-aws.md](2026-11-17-product-and-aws.md) | Standalone product positioning, confirmed AWS deployment direction, and initial documentation commit |
+| [2026-11-17-product-and-deployment.md](2026-11-17-product-and-deployment.md) | Standalone product positioning, deployment requirements, and initial documentation commit |
+| [2026-11-17-documentation-separation.md](2026-11-17-documentation-separation.md) | Shared documentation and ignored local operations boundary |
+| [2026-11-17-uiux-design.md](2026-11-17-uiux-design.md) | UI/UX design rationale, deliverables, and verification |
+| [2026-11-18-product-design-publication.md](2026-11-18-product-design-publication.md) | Public product design references and publication boundary |
 
-The initial task, documentation initialization, is complete. The product and AWS follow-up has its own record above; the original stage logs retain their task identity. Application and infrastructure backlog items are planned and unstarted.
+The initial task, documentation initialization, is complete. The product and deployment follow-up has its own record above; the original stage logs retain their task identity. Application and infrastructure backlog items are planned and unstarted.
 
 Before reusing current task logs for another task, archive the completed task together under a dated, descriptive subdirectory, preserving internal context. Keep the backlog current. Do not erase unfinished work or interpret template headings as actual findings.
 

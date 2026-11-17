@@ -1,0 +1,37 @@
+[
+  {
+    "file": "flows/01-record-publish.png",
+    "width": 2892,
+    "height": 4596
+  },
+  {
+    "file": "flows/02-visitor-questions.png",
+    "width": 3544,
+    "height": 5076
+  },
+  {
+    "file": "flows/03-update-revoke.png",
+    "width": 3620,
+    "height": 3528
+  },
+  {
+    "file": "flows/04-later-phases.png",
+    "width": 4096,
+    "height": 3108
+  },
+  {
+    "file": "mockups/01-experience-editor.png",
+    "width": 1487,
+    "height": 1058
+  },
+  {
+    "file": "mockups/02-publication-preview.png",
+    "width": 1487,
+    "height": 1058
+  },
+  {
+    "file": "mockups/03-public-portfolio.png",
+    "width": 1487,
+    "height": 1058
+  }
+]

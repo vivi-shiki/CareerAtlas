@@ -1,0 +1,26 @@
+digraph G {
+graph [bgcolor="#FFFFFF", pad="0.4", nodesep="0.4", ranksep="0.55", fontname="Arial", fontsize=22, fontcolor="#17221F", labelloc="t", labeljust="l"];
+node [shape=box, style="rounded,filled", fillcolor="#F8FAFC", color="#D7DFDA", fontname="Arial", fontsize=14, fontcolor="#17221F", margin="0.2,0.13"];
+edge [color="#52615A", fontname="Arial", fontsize=11, fontcolor="#52615A", arrowsize=0.7];
+
+label="CareerAtlas / P0\nRecord, confirm, and publish";
+a [label="Sign in\nOwner workspace"];
+b [label="Choose or create project\nTitle + project type + role"];
+c [label="Record contribution\nTitle, type, date precision, personal action"];
+d [label="Save draft\nIncomplete content is allowed"];
+e [shape=diamond,label="Confirm:\nrequired fields valid?",fillcolor="#FFFBEB",color="#D6B778"];
+f [label="Fix fields\nRetain all entered values",fillcolor="#FFFBEB"];
+g [label="Confirmed version\nStill private",fillcolor="#ECFDF5",color="#047857"];
+h [label="Select public records + fields\nProfile and confirmed content only"];
+i [label="Review visitor preview\nExactly the selected fields"];
+j [shape=diamond,label="Publish\nexplicitly?",fillcolor="#FFFBEB"];
+k [label="Create publication snapshot\nPublic page + scoped Q&A",fillcolor="#047857",fontcolor="white",color="#047857"];
+l [label="Keep private\nReturn without publishing"];
+a -> b -> c -> d -> e;
+e -> f [label="No"]; f -> c [label="Edit"];
+e -> g [label="Yes"]; g -> h -> i -> j;
+j -> k [label="Yes"]; j -> l [label="Cancel"];
+{rank=same;e;f} {rank=same;j;l}
+note [shape=note,label="Optional: outcomes, skills and evidence.\nA supplied link is not independently verified.\nConfirmation and publishing are separate actions.",fontsize=12];
+g -> note [style=dashed,arrowhead=none];
+}

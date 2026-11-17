@@ -1,0 +1,25 @@
+digraph G {
+graph [bgcolor="#FFFFFF", pad="0.4", nodesep="0.4", ranksep="0.55", fontname="Arial", fontsize=22, fontcolor="#17221F", labelloc="t", labeljust="l"];
+node [shape=box, style="rounded,filled", fillcolor="#F8FAFC", color="#D7DFDA", fontname="Arial", fontsize=14, fontcolor="#17221F", margin="0.2,0.13"];
+edge [color="#52615A", fontname="Arial", fontsize=11, fontcolor="#52615A", arrowsize=0.7];
+
+label="CareerAtlas / P0\nPublication lifecycle and withdrawal";
+a [label="Published snapshot is active",fillcolor="#ECFDF5",color="#047857"];
+b [label="Edit source\nNew private draft revision"];
+c [label="Published / Unpublished changes\nVisitor still sees previous snapshot"];
+d [label="Confirm revision + review selected fields"];
+e [label="Explicitly republish\nNew snapshot becomes active",fillcolor="#ECFDF5",color="#047857"];
+f [label="Choose revoke publication\nExplain affected page and Q&A"];
+g [shape=diamond,label="Confirm\nrevocation?",fillcolor="#FFFBEB"];
+h [label="Keep publication active"];
+i [label="Revoke online access\nPages + answers + citations",fillcolor="#FEF2F2",color="#B91C1C"];
+j [label="Invalidate dependent retrieval / caches\nReauthorize stored chat and in-flight answers"];
+k [label="Old link: neutral unavailable state\nOwner: Revoked",fillcolor="#B91C1C",fontcolor="white",color="#B91C1C"];
+l [label="Source deletion / outward revocation\nDisable dependent online references",fillcolor="#FEF2F2"];
+a -> b -> c -> d -> e;
+a -> f -> g; g -> h [label="Cancel"]; g -> i [label="Confirm"]; i -> j -> k;
+l -> j;
+{rank=same;b;f;l} {rank=same;d;g} {rank=same;e;k}
+note [shape=note,label="Archiving is separate from deletion and revocation.\nAlready viewed, downloaded or captured copies cannot be recalled.\nRepublishing must not bypass current source permissions.",fontsize=12];
+k -> note [style=dashed,arrowhead=none];
+}

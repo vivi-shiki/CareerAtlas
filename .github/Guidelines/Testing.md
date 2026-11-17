@@ -17,8 +17,8 @@ Use [Acceptance and Testing](../KnowledgeBase/KB_CareerAtlas_Testing.md) to choo
 
 Do not add tests that merely restate low-impact text edits. Run required and risk-appropriate checks, and broaden them when failures or changed behavior warrant it. Never call a blocked, skipped, mocked, or unavailable check passed. Passing a fixed AI evaluation set does not prove universal correctness.
 
-## AWS release verification
+## Release verification
 
-After infrastructure and release tooling exist, run the P0 workflow in the deployed environment. Verify authentication, persistent PostgreSQL data, public field filtering, citation access, and revocation through any delivery/cache layer. Exercise provider failure and the documented recovery procedure. Record the AWS project, selected Region, artifact revision, and actual outcomes without exposing credentials.
+After infrastructure and release tooling exist, run the P0 workflow in the deployed environment. Verify authentication, persistent PostgreSQL data, public field filtering, citation access, and revocation through any delivery/cache layer. Exercise provider failure and the documented recovery procedure. Record the environment identity and detailed outcomes in ignored local logs. Record reusable checks, artifact revision, and sanitized product-level findings in shared logs.
 
-Deployment smoke checks supplement application and authorization tests. No AWS release has been tested yet. Follow [Deployment](../KnowledgeBase/KB_CareerAtlas_Design_Deployment.md) for the environment constraints and release boundary.
+Deployment smoke checks supplement application and authorization tests. No application release has been tested yet. Follow [Deployment](../KnowledgeBase/KB_CareerAtlas_Design_Deployment.md) for shared release requirements and the local companion for environment constraints.

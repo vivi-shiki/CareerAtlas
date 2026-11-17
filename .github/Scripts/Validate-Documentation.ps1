@@ -6,6 +6,7 @@ $ErrorActionPreference = 'Stop'
 $repoRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..\..')).Path
 $problems = [System.Collections.Generic.List[string]]::new()
 $requiredFiles = @(
+    '.gitignore',
     'README.md', 'AGENTS.md', 'CLAUDE.md', 'Project.md',
     '.github/copilot-instructions.md',
     '.github/KnowledgeBase/Index.md',
@@ -21,6 +22,8 @@ $requiredFiles = @(
     '.github/KnowledgeBase/KB_CareerAtlas_Design_DataModel.md',
     '.github/KnowledgeBase/KB_CareerAtlas_Design_Authorization.md',
     '.github/KnowledgeBase/KB_CareerAtlas_Design_UserExperience.md',
+    '.github/KnowledgeBase/KB_CareerAtlas_Design_UIUX.md',
+    'design/2026-11-17/README.md',
     '.github/Guidelines/SourceFileManagement.md',
     '.github/Guidelines/Building.md',
     '.github/Guidelines/Testing.md',
@@ -58,6 +61,9 @@ foreach ($relativePath in $requiredFiles) {
 $documents = @(
     Get-ChildItem -LiteralPath $repoRoot -File -Filter '*.md'
     Get-ChildItem -LiteralPath (Join-Path $repoRoot '.github') -Recurse -File -Filter '*.md'
+    if (Test-Path -LiteralPath (Join-Path $repoRoot 'design')) {
+        Get-ChildItem -LiteralPath (Join-Path $repoRoot 'design') -Recurse -File -Filter '*.md'
+    }
 )
 $linkCount = 0
 foreach ($document in $documents) {
@@ -87,8 +93,34 @@ foreach ($document in $documents) {
         $resolvedTarget = [IO.Path]::GetFullPath((Join-Path $document.DirectoryName $localPath))
         if (-not $resolvedTarget.StartsWith($repoRoot + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
             $problems.Add("Local link leaves repository: $destination in $($document.FullName)")
+        } elseif ($resolvedTarget -eq (Join-Path $repoRoot '.local') -or $resolvedTarget.StartsWith((Join-Path $repoRoot '.local') + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
+            $problems.Add("Shared document links to local-only content: $destination in $($document.FullName)")
         } elseif (-not (Test-Path -LiteralPath $resolvedTarget)) {
             $problems.Add("Broken local link: $destination in $($document.FullName)")
+        }
+    }
+}
+
+# Check the actual Git boundary without reading credential contents.
+$ignorePath = Join-Path $repoRoot '.gitignore'
+if (Test-Path -LiteralPath $ignorePath -PathType Leaf) {
+    $ignoreRules = @(Get-Content -LiteralPath $ignorePath -Encoding UTF8)
+    foreach ($rule in @('/.local/', '.env', '.env.*', '!.env.example', '!.env.*.example', '/credentials/', '/secrets/', '*.pem', '*.key')) {
+        if ($rule -notin $ignoreRules) { $problems.Add("Missing private-file ignore rule: $rule") }
+    }
+}
+$gitBoundaryChecked = $false
+if ((Get-Command git -ErrorAction SilentlyContinue) -and (Test-Path -LiteralPath (Join-Path $repoRoot '.git'))) {
+    $trackedPaths = @(& git -C $repoRoot ls-files)
+    if ($LASTEXITCODE -ne 0) {
+        $problems.Add('Cannot inspect Git-tracked paths.')
+    } else {
+        $gitBoundaryChecked = $true
+        foreach ($trackedPath in $trackedPaths) {
+            if ($trackedPath -match '^\.local(?:/|$)|^(credentials|secrets)/|\.(pem|key)$' -or
+                ($trackedPath -match '(^|/)\.env(?:\..*)?$' -and $trackedPath -notmatch '(^|/)\.env(?:\..+)?\.example$')) {
+                $problems.Add("Private file is tracked by Git: $trackedPath")
+            }
         }
     }
 }
@@ -154,5 +186,11 @@ Write-Output "PASS: $linkCount local links resolve inside the repository; extern
 Write-Output 'PASS: English-baseline character guard, code fences, and trailing whitespace.'
 Write-Output 'PASS: 39 feature IDs, 27 acceptance IDs, and 12 integration-case IDs appear exactly once in canonical lists.'
 Write-Output "PASS: $($markers.Count) task/learning markers."
+Write-Output 'PASS: Ignore rules and shared/local documentation link boundary.'
+if ($gitBoundaryChecked) {
+    Write-Output 'PASS: No local-only paths, environment files, or common credential files tracked by Git.'
+} else {
+    Write-Output 'SKIP: Git index inspection unavailable (Git or checkout metadata missing).'
+}
 Write-Output 'Scope: documentation consistency only; no application tests or live AI evaluation.'
 exit 0

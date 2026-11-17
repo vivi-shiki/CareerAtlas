@@ -1,0 +1,38 @@
+digraph G {
+graph [newrank=true, bgcolor="#FFFFFF", pad="0.4", nodesep="0.4", ranksep="0.55", fontname="Arial", fontsize=22, fontcolor="#17221F", labelloc="t", labeljust="l"];
+node [shape=box, style="rounded,filled", fillcolor="#F8FAFC", color="#D7DFDA", fontname="Arial", fontsize=14, fontcolor="#17221F", margin="0.2,0.13"];
+edge [color="#52615A", fontname="Arial", fontsize=11, fontcolor="#52615A", arrowsize=0.7];
+
+label="CareerAtlas / P1 + P2\nPlanned flows; excluded from P0 navigation";
+subgraph cluster_capture {label="P1 / Record and prepare";fontsize=16;color="#D7DFDA";style=rounded;
+a [label="Choose project + enter recent work"];
+b [label="Optional AI capture\nAt most 2 gap questions per turn; skip allowed"];
+c [label="Edit draft + confirm\nUnknown facts remain blank"];
+d [label="Private preparation task\nRole / question / target language"];
+e [label="Choose cited experience\nReview gaps; edit and confirm answer"];
+f [label="Practice one written question\nStop, retry or keep selected feedback"];
+a -> b -> c -> d -> e -> f;
+}
+subgraph cluster_opportunity {label="P1 / Opportunity page";fontsize=16;color="#D7DFDA";style=rounded;
+o1 [label="Enter opportunity requirements\nPrivate metadata"];
+o2 [label="Map requirements to evidence\nManual selection or AI suggestions"];
+o3 [label="Order projects + edit introduction\nPreserve source facts"];
+o4 [label="Preview selected fields\nExplicitly publish independent snapshot"];
+o5 [label="Page-scoped Q&A / Markdown export\nSame field and source allowlist"];
+o6 [label="Changed sources: review + republish\nOr revoke the page"];
+o1 -> o2 -> o3 -> o4 -> o5 -> o6;
+}
+subgraph cluster_org {label="P2 / Authorized collaboration";fontsize=16;color="#D7DFDA";style=rounded;
+p1 [label="Accept organization invitation\nPersonal archive stays private"];
+p2 [label="Create organization record OR share\nExact version + fields + recipient scope"];
+p3 [label="Optional reviewer request\nConfirm claims / request additions / decline"];
+p4 [label="Authorized search and growth context\nNo employee or hiring scores"];
+p5 [label="Development conversation\nAgreed actions + owner + target date"];
+p6 [label="Revoke / expire / leave / suspend\nRecheck sessions and source access"];
+p1 -> p2 -> p3 -> p4 -> p5 -> p6;
+}
+{rank=same;a;o1;p1}
+{rank=same;f;o6;p6}
+note [shape=note,label="P2 named recipients require matching authenticated identity.\nJoining is not blanket sharing. Managers do not gain private interview access.\nHuman confirmation concerns exact claims and versions, not overall ability.",fontsize=12];
+f -> note [style=dashed,arrowhead=none];o6 -> note [style=dashed,arrowhead=none];p6 -> note [style=dashed,arrowhead=none];
+}

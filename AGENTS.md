@@ -6,6 +6,8 @@ Read these files before working:
 2. [Project-specific instructions](Project.md)
 3. [Knowledge-base index](.github/KnowledgeBase/Index.md), then the topics relevant to the task.
 
+For demo or environment work, also read `.local/docs/README.md` if present and follow its current environment instructions. That ignored directory is optional for general product development. Keep its contents out of Git, public task logs, and generated artifacts; never force-add it. Read the [documentation boundary](.github/Guidelines/Documentation.md) before deciding where to record a finding.
+
 Use English for working documentation, code identifiers, comments, task logs, and agent communication unless the user explicitly requests another language. Product content can be multilingual as specified in the requirements.
 
 ## Workflow routing

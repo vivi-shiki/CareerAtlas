@@ -35,8 +35,8 @@ Regular source edits do not update existing publications. Explicit republishing 
 
 Use structured, redacted runtime logs. Keep API credentials server-side. Start with bounded database text/tag retrieval; vector search is optional only after observed retrieval failures justify it. Queue infrastructure is not required by this document; add it if runtime behavior needs background execution.
 
-AWS is the confirmed hosting platform. Plan Regional resources for the configured selected Region, `ap-southeast-2`, subject to the new AWS experience constraints in [Deployment](KB_CareerAtlas_Design_Deployment.md). Keep the Laravel, Vue, and PostgreSQL application boundaries intact when selecting hosting services.
+Preserve the Laravel, Vue, and PostgreSQL application boundaries across hosting environments. Follow the shared [Deployment contract](KB_CareerAtlas_Design_Deployment.md) for configuration, persistence, and release behavior.
 
-Concrete AWS services, exact runtime versions, retention, and AI provider remain open. Record service decisions and reproducible release commands during implementation. No infrastructure has been provisioned or verified.
+Record exact runtime versions, shared integration code, retention policy, and portable release commands in the repository as they are implemented. Keep actual service selections, model settings, resource mappings, and environment-specific commands in ignored local documentation. No application deployment has been implemented.
 
 Related: [Data Model](KB_CareerAtlas_Design_DataModel.md), [Authorization](KB_CareerAtlas_Design_Authorization.md), [Agent Tools](KB_CareerAtlas_AgentTools.md).

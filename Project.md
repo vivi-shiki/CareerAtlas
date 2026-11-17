@@ -21,11 +21,11 @@ As of 2026-11-17, the repository contains the AI documentation foundation only. 
 | Database | PostgreSQL | Structured records, versioned publications, permission-aware queries |
 | AI | Provider-neutral server adapter | Tool calling, structured responses, bounded execution |
 | Build tooling | Composer and a Vue-compatible frontend toolchain | Select exact versions and package manager during bootstrap |
-| Deployment | AWS, confirmed | New AWS experience; selected Region `ap-southeast-2`; CLI profile `default`; concrete services pending |
+| Deployment | Configurable hosting | Application runtime, persistent PostgreSQL, HTTPS, health checks, backup and recovery |
 
 Use a single Laravel application with Vue UI as the initial architectural direction. A same-origin deployment is preferred to simplify authentication. Whether Vue is mounted through Inertia or uses a JSON API is an open bootstrap decision; preserve the business contracts either way. Do not introduce a separate Node/Python application server without a concrete requirement.
 
-Read [AWS Deployment](.github/KnowledgeBase/KB_CareerAtlas_Design_Deployment.md) before infrastructure work. The supplied AWS configuration has not been verified against a live project. Platform selection is confirmed; service topology, plan status, and release tooling remain open.
+Read [Deployment contract](.github/KnowledgeBase/KB_CareerAtlas_Design_Deployment.md) before infrastructure work. Shared implementation details and portable release procedures belong in Git. Actual cloud/API selections, project identifiers, resource settings, and environment verification belong in ignored `.local/docs/`. This separation does not change the application stack or feature requirements.
 
 ## Scope
 

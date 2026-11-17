@@ -18,7 +18,7 @@ The source requirements are represented by [Functional Requirements](KnowledgeBa
 
 Use Laravel for business authorization and validation; Vue must not be the sole enforcement layer. Keep model calls and secrets on the server. Publish only explicitly selected, confirmed content. Use PostgreSQL for database-dependent integration checks.
 
-AWS is the selected deployment platform. Follow [AWS Deployment](KnowledgeBase/KB_CareerAtlas_Design_Deployment.md) for the configured Region, new AWS experience constraints, and infrastructure decision status. Keep product design applicable to ongoing individual and organizational use.
+Follow the shared [Deployment contract](KnowledgeBase/KB_CareerAtlas_Design_Deployment.md). Read `.local/docs/README.md` if present before environment-specific work. Actual cloud/API selections, local restrictions, resource identifiers, credential paths, and private troubleshooting belong only in `.local/docs/`; reusable technology choices, implementation details, and development requirements remain in Git. Do not copy local operational details into shared task logs or learning files.
 
 Before editing, reread the target and inspect the working tree. Preserve concurrent user changes. Stay within the requested scope; complete authorized reversible work without adding approval ceremonies. Do not publish, send messages, deploy, or commit merely because a workflow template mentions those activities.
 

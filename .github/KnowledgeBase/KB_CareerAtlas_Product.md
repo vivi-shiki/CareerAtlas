@@ -43,10 +43,23 @@ P0 accepts typed text and registered URLs. It does not crawl repositories, verif
 
 Measure time to first confirmed experience, repeat recording, successful source retrieval, source clicks, accepted/edited/discarded AI drafts, and recurring unanswered question categories. For organization use, interview users about duplicate collection steps and verify with observed workflows.
 
+## Product design references
+
+The [UI/UX specification](KB_CareerAtlas_Design_UIUX.md) and [visual design pack](../../design/2026-11-17/README.md) are shared product documentation. Use them alongside the functional requirements to review the proposed workflows:
+
+| Product intent | Design reference | Requirement connection |
+| --- | --- | --- |
+| Record personal contributions and their evidence privately | Experience editor | S3-01 through S3-03 |
+| Review the exact fields a visitor will receive | Publication preview | S1-06 |
+| Present work and answer questions with inspectable sources | Public portfolio and cited Q&A | S1-07 |
+| Preserve access rules through publication changes | Update/revocation flow | Publication and authorization contracts |
+
+These references illustrate intended behavior and use fictional records. They do not establish working authentication, authorization, accessibility, mobile behavior, or model integration. Acceptance criteria remain authoritative; UI/UX references help reviewers assess the design before implementation.
+
 ## Open choices
 
-AWS is the confirmed deployment platform. The supplied environment uses the new AWS experience, selected Region `ap-southeast-2`, and CLI profile `default`; see [Deployment](KB_CareerAtlas_Design_Deployment.md).
+The [Deployment contract](KB_CareerAtlas_Design_Deployment.md) defines shared operational requirements. Hosting and API selections for an individual installation are local environment decisions.
 
-Runtime/package versions, provider/model, AWS service topology, delivery tooling, retention periods, future attachments, recipient sign-in, and detailed third-party confirmation policy remain implementation decisions. The product name has not been checked for domain or trademark availability.
+Runtime/package versions, frontend integration, reusable delivery tooling, retention periods, future attachments, recipient sign-in, and detailed third-party confirmation policy remain shared implementation decisions. The product name has not been checked for domain or trademark availability.
 
 See [Functional Requirements](KB_CareerAtlas_FunctionalRequirements.md) and [Sources](Sources.md).

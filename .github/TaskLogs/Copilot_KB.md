@@ -10,7 +10,7 @@ The product needs evidence-linked career records and permission-aware retrieval.
 
 ## ASKS
 
-No additional information is required for documentation initialization. Exact versions, frontend integration, and AI provider remain explicitly open for application bootstrap. The subsequent AWS decision is recorded in [Deployment](../KnowledgeBase/KB_CareerAtlas_Design_Deployment.md).
+No additional information is required for documentation initialization. Exact versions, frontend integration, and AI provider remain explicitly open for application bootstrap. Shared deployment requirements are recorded in [Deployment](../KnowledgeBase/KB_CareerAtlas_Design_Deployment.md); concrete environment choices are local.
 
 ## DRAFT
 
