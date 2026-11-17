@@ -1,0 +1,1521 @@
+{
+  "get_profile": {
+    "description": "Get profile. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {},
+      "required": []
+    }
+  },
+  "update_profile": {
+    "description": "Update profile. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "direction": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "biography": {
+          "type": "string",
+          "maxLength": 20000
+        },
+        "preferred_language": {
+          "type": "string",
+          "enum": [
+            "en",
+            "ja",
+            "zh"
+          ]
+        },
+        "contact_links": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "label": {
+                "type": "string",
+                "maxLength": 100
+              },
+              "url": {
+                "type": "string",
+                "maxLength": 2000
+              }
+            },
+            "required": [
+              "label",
+              "url"
+            ]
+          }
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "expected_version"
+      ]
+    }
+  },
+  "list_projects": {
+    "description": "List projects. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "page": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "per_page": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "query": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "archived": {
+          "type": "boolean"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "commercial",
+            "personal",
+            "learning"
+          ]
+        }
+      },
+      "required": []
+    }
+  },
+  "get_project": {
+    "description": "Get project. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "create_project": {
+    "description": "Create project. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "commercial",
+            "personal",
+            "learning"
+          ]
+        },
+        "role": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "background": {
+          "type": "string",
+          "maxLength": 20000
+        },
+        "team_outcome": {
+          "type": "string",
+          "maxLength": 20000
+        },
+        "occurrence": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "start": {
+              "type": "string"
+            },
+            "precision": {
+              "type": "string",
+              "enum": [
+                "year",
+                "month",
+                "day"
+              ]
+            },
+            "end": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "end_precision": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "year",
+                "month",
+                "day",
+                null
+              ]
+            },
+            "ongoing": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "start",
+            "precision"
+          ]
+        }
+      },
+      "required": [
+        "title",
+        "type",
+        "role"
+      ]
+    }
+  },
+  "update_project": {
+    "description": "Update project. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "commercial",
+            "personal",
+            "learning"
+          ]
+        },
+        "role": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "background": {
+          "type": "string",
+          "maxLength": 20000
+        },
+        "team_outcome": {
+          "type": "string",
+          "maxLength": 20000
+        },
+        "occurrence": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "start": {
+              "type": "string"
+            },
+            "precision": {
+              "type": "string",
+              "enum": [
+                "year",
+                "month",
+                "day"
+              ]
+            },
+            "end": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "end_precision": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "year",
+                "month",
+                "day",
+                null
+              ]
+            },
+            "ongoing": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "start",
+            "precision"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "archive_project": {
+    "description": "Archive project. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "restore_project": {
+    "description": "Restore project. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "delete_project": {
+    "description": "Delete project. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "list_experiences": {
+    "description": "List experiences. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "page": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "per_page": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "query": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "archived": {
+          "type": "boolean"
+        },
+        "project_id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": []
+    }
+  },
+  "get_experience": {
+    "description": "Get experience. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "create_experience": {
+    "description": "Create experience. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "personal_action": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 20000
+        },
+        "result": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 20000
+        },
+        "validation": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 20000
+        },
+        "remaining_work": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 20000
+        },
+        "private_notes": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 20000
+        },
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 200
+        },
+        "record_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "work_contribution",
+            "learning",
+            "problem_solving",
+            null
+          ]
+        },
+        "occurrence": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "start": {
+              "type": "string"
+            },
+            "precision": {
+              "type": "string",
+              "enum": [
+                "year",
+                "month",
+                "day"
+              ]
+            },
+            "end": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "end_precision": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "year",
+                "month",
+                "day",
+                null
+              ]
+            },
+            "ongoing": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "start",
+            "precision"
+          ]
+        },
+        "project_id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "project_id"
+      ]
+    }
+  },
+  "update_experience": {
+    "description": "Update experience. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "personal_action": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 20000
+        },
+        "result": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 20000
+        },
+        "validation": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 20000
+        },
+        "remaining_work": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 20000
+        },
+        "private_notes": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 20000
+        },
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 200
+        },
+        "record_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "work_contribution",
+            "learning",
+            "problem_solving",
+            null
+          ]
+        },
+        "occurrence": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "start": {
+              "type": "string"
+            },
+            "precision": {
+              "type": "string",
+              "enum": [
+                "year",
+                "month",
+                "day"
+              ]
+            },
+            "end": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "end_precision": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "year",
+                "month",
+                "day",
+                null
+              ]
+            },
+            "ongoing": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "start",
+            "precision"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "archive_experience": {
+    "description": "Archive experience. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "restore_experience": {
+    "description": "Restore experience. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "delete_experience": {
+    "description": "Delete experience. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "confirm_experience": {
+    "description": "Confirm experience. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "revoke_experience_access": {
+    "description": "Revoke experience access. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "list_skills": {
+    "description": "List skills. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "string",
+          "maxLength": 200
+        }
+      },
+      "required": []
+    }
+  },
+  "get_skill": {
+    "description": "Get skill. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "create_skill": {
+    "description": "Create skill. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 100
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  },
+  "update_skill": {
+    "description": "Update skill. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "expected_version"
+      ]
+    }
+  },
+  "add_skill_alias": {
+    "description": "Add skill alias. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "alias": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "alias",
+        "expected_version"
+      ]
+    }
+  },
+  "delete_skill_alias": {
+    "description": "Delete skill alias. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "alias": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "alias",
+        "expected_version"
+      ]
+    }
+  },
+  "attach_skill": {
+    "description": "Attach skill. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "skill_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "skill_id",
+        "expected_version"
+      ]
+    }
+  },
+  "detach_skill": {
+    "description": "Detach skill. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "skill_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "skill_id",
+        "expected_version"
+      ]
+    }
+  },
+  "list_evidence": {
+    "description": "List evidence. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "experience_id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "experience_id"
+      ]
+    }
+  },
+  "create_evidence": {
+    "description": "Create evidence. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "repository",
+            "demo",
+            "document",
+            "statement"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 2000
+        },
+        "excerpt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 10000
+        },
+        "experience_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "experience_id",
+        "expected_version",
+        "kind",
+        "label"
+      ]
+    }
+  },
+  "update_evidence": {
+    "description": "Update evidence. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "repository",
+            "demo",
+            "document",
+            "statement"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 2000
+        },
+        "excerpt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 10000
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "delete_evidence": {
+    "description": "Delete evidence. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "preview_publication": {
+    "description": "Preview publication. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "profile_fields": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "display_name",
+              "direction",
+              "biography",
+              "preferred_language",
+              "contact_links"
+            ]
+          }
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "experience_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "fields": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "title",
+                    "record_type",
+                    "occurrence",
+                    "personal_action",
+                    "result",
+                    "validation",
+                    "remaining_work",
+                    "skills",
+                    "evidence"
+                  ]
+                }
+              },
+              "project_fields": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "title",
+                    "type",
+                    "role",
+                    "background",
+                    "team_outcome",
+                    "occurrence"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "experience_id",
+              "fields",
+              "project_fields"
+            ]
+          }
+        },
+        "publication_id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "profile_fields",
+        "items"
+      ]
+    }
+  },
+  "publish_publication": {
+    "description": "Publish publication. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "profile_fields": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "display_name",
+              "direction",
+              "biography",
+              "preferred_language",
+              "contact_links"
+            ]
+          }
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "experience_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "fields": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "title",
+                    "record_type",
+                    "occurrence",
+                    "personal_action",
+                    "result",
+                    "validation",
+                    "remaining_work",
+                    "skills",
+                    "evidence"
+                  ]
+                }
+              },
+              "project_fields": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "title",
+                    "type",
+                    "role",
+                    "background",
+                    "team_outcome",
+                    "occurrence"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "experience_id",
+              "fields",
+              "project_fields"
+            ]
+          }
+        },
+        "publication_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "preview_digest": {
+          "type": "string",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "idempotency_key": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 120
+        }
+      },
+      "required": [
+        "profile_fields",
+        "items",
+        "preview_digest",
+        "idempotency_key"
+      ]
+    }
+  },
+  "republish_publication": {
+    "description": "Republish publication. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "profile_fields": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "display_name",
+              "direction",
+              "biography",
+              "preferred_language",
+              "contact_links"
+            ]
+          }
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "experience_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "fields": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "title",
+                    "record_type",
+                    "occurrence",
+                    "personal_action",
+                    "result",
+                    "validation",
+                    "remaining_work",
+                    "skills",
+                    "evidence"
+                  ]
+                }
+              },
+              "project_fields": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "title",
+                    "type",
+                    "role",
+                    "background",
+                    "team_outcome",
+                    "occurrence"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "experience_id",
+              "fields",
+              "project_fields"
+            ]
+          }
+        },
+        "publication_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "preview_digest": {
+          "type": "string",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "idempotency_key": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 120
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "publication_id",
+        "expected_version",
+        "profile_fields",
+        "items",
+        "preview_digest",
+        "idempotency_key"
+      ]
+    }
+  },
+  "list_publications": {
+    "description": "List publications. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {},
+      "required": []
+    }
+  },
+  "get_publication": {
+    "description": "Get publication. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "revoke_publication": {
+    "description": "Revoke publication. Uses the authenticated owner scope; never accepts an owner ID.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "expected_version"
+      ]
+    }
+  },
+  "get_public_portfolio": {
+    "description": "Get public portfolio. Reads only currently authorized public snapshot fields.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "slug": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        }
+      },
+      "required": [
+        "slug"
+      ]
+    }
+  },
+  "get_public_project": {
+    "description": "Get public project. Reads only currently authorized public snapshot fields.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "slug": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "slug",
+        "id"
+      ]
+    }
+  },
+  "list_public_skills": {
+    "description": "List public skills. Reads only currently authorized public snapshot fields.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "slug": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        }
+      },
+      "required": [
+        "slug"
+      ]
+    }
+  },
+  "get_public_skill": {
+    "description": "Get public skill. Reads only currently authorized public snapshot fields.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "slug": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "slug",
+        "id"
+      ]
+    }
+  },
+  "get_public_citation": {
+    "description": "Get public citation. Reads only currently authorized public snapshot fields.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "slug": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "slug",
+        "id"
+      ]
+    }
+  }
+}
