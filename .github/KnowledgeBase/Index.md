@@ -9,13 +9,17 @@ Start with [Project.md](../../Project.md). CareerAtlas connects experience, proj
 - [Acceptance criteria and verification](KB_CareerAtlas_Testing.md)
 - [Sources and GacUI adaptation](Sources.md)
 
+- [P0 implementation design, schema, atomic operations, and coverage review](KB_CareerAtlas_Implementation_P0.md)
+- [P0 frontend visual system and browser behavior coverage](KB_CareerAtlas_Frontend_P0.md)
+- [P0 Agent integration decision, lifecycle, UI and acceptance](KB_CareerAtlas_Agent_P0.md)
+
 ## CareerAtlas
 
 ### Choosing APIs
 
 #### Business Operations
 
-Use authenticated owner operations for editing, confirming, and publishing. Public operations read permitted snapshots. No application API is implemented yet.
+Use authenticated owner operations for editing, confirming, and publishing. Public operations read permitted snapshots. P0 non-AI operations now share one domain dispatcher across HTTP and developer MCP; frontend and Agent acceptance remain separate.
 
 - Use request validation for input and Policy-style authorization for objects.
 - Use explicit publication actions for snapshot updates and revocation.
@@ -70,6 +74,8 @@ Framework recommendation, open-source visual references, screen specifications, 
 [Design Explanation](KB_CareerAtlas_Design_UIUX.md)
 
 ## Experiences and Learnings
+
+- [Localization: three-language UI, API messages, and README maintenance](KB_CareerAtlas_Localization.md)
 
 - [Shared decisions and preferences](Learning.md)
 - [Coding observations](../Learning/Learning_Coding.md)

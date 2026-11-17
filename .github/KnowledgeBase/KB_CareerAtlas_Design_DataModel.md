@@ -1,6 +1,6 @@
 # CareerAtlas Data Model and Versioning
 
-Status: logical model; names below are not existing tables or classes.
+Status: logical model across P0–P2. The P0 non-AI entities now have executable PostgreSQL migrations; see the [physical schema and operation design](KB_CareerAtlas_Implementation_P0.md). Agent sessions/runs and P1/P2 entities remain planned.
 
 ## Entities
 
@@ -36,6 +36,7 @@ Separate team outcomes from personal actions. Store a statement's provenance as 
 
 - Content: `draft -> confirmed -> archived`. Editing confirmed content creates a draft revision; prior confirmed versions remain distinguishable.
 - Publication: `unpublished -> published -> revoked`. Republishing explicitly replaces the active snapshot; old server-accessible views must respect current revocation.
+- Agent run: `queued -> running -> completed | failed | cancelled | expired`. Browser-bound conversations expire after 24 hours; the daily cleanup removes their runs. A changed authorized projection invalidates old history and in-flight context. See [Agent storage and lifecycle](KB_CareerAtlas_Agent_P0.md).
 - Third-party confirmation: `not_requested -> pending -> confirmed | changes_requested`; material changes make the current version `stale` pending renewed review. A reviewer may decline to confirm with an explanation; do not label that as a negative ability assessment.
 
 Archiving alone preserves history and is distinct from deletion or outward authorization revocation. The UI must expose the intended action clearly. Deletion and revocation invalidate dependent online access; clarify retention before implementing physical deletion.

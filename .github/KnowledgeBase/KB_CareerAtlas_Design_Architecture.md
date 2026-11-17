@@ -1,6 +1,6 @@
 # CareerAtlas Application Architecture
 
-Status: proposed implementation direction. No application code exists yet.
+Status: P0 backend, live Vue UI and bounded public Agent implemented, with separate backend, browser, MCP and live-model verification. See the [implementation design](KB_CareerAtlas_Implementation_P0.md), [Agent architecture](KB_CareerAtlas_Agent_P0.md) and [acceptance ledger](../TaskLogs/2026-11-18-p0-implementation.md).
 
 ## Components
 
@@ -11,7 +11,7 @@ Status: proposed implementation direction. No application code exists yet.
 | PostgreSQL | Records, relationships, snapshots, grants, runs, consistency constraints |
 | Model adapter | Provider-specific transport and response normalization |
 
-Prefer one deployable application with a same-origin UI initially. The UI transport choice is open; document it during bootstrap. The model is not the database authority. Server code performs all access and publication decisions.
+Use one deployable Laravel application with a same-origin Vue 3 / TypeScript UI. Vite builds assets served through Laravel; browser operations use the cookie-authenticated JSON API with CSRF protection. Developer MCP tools call the same domain services. The model is not the database authority. Server code performs all access and publication decisions.
 
 ## Business path
 

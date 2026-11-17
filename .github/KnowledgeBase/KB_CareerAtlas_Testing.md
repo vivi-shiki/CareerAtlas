@@ -1,6 +1,6 @@
 # CareerAtlas Testing and Acceptance
 
-Status: acceptance definitions only. Application tests have not been implemented or run. Keep original acceptance identifiers when adding tests.
+Status: acceptance definitions across all phases. After localization, the P0 backend passes 70 PostgreSQL tests / 872 assertions, including the original 24 Agent tests. Browser acceptance covers 71 distinct cases: the original 61 and 10 localization cases, verified by a 70-case full run followed by the final expanded 10-case localization run. A real MCP client discovered 41 tools and completed 26 workflow calls. Three additional fictional live-model questions verified English, Chinese, and Japanese answers and source navigation. The [localization record](../TaskLogs/2026-11-18-localization.md) contains current results and limitations; the earlier [execution ledger](../TaskLogs/2026-11-18-p0-implementation.md) retains the original P0 gate evidence. Keep original acceptance identifiers when adding tests.
 
 ## S1 acceptance
 
@@ -80,6 +80,12 @@ For the fixed evaluation set, the proposed release gate is zero private disclosu
 
 Provider mocks check orchestration and failures; separately label live-model evaluations. Code can validate source membership, but semantic claim support needs fixture-based evaluation and review.
 
+### P0 live evaluation result: 2026-11-18
+
+The final fixed set contains 20 fictional questions, including 12 answerable cases and eight missing-information or adversarial cases. Nineteen completed on the first attempt; one returned an upstream 503. One explicit retry of that same question completed successfully. The original failed attempt is retained in local evidence. Expected source selection was 11/12 on the first attempt (the unavailable answer accounts for the miss), and 12/12 after retry. All eight negative cases reported an information gap. Manual review of all 20 final answers found zero private disclosures, invented sources or fabricated experience.
+
+Earlier evaluation rounds exposed repeated empty searches, an inaccurate private-data existence claim, an imprecise personal-action citation and inconsistent gap flags. The final prompt and terminal-step restriction were evaluated against the entire fixed set again. Conservative wording and occasional first-person quotation remain stylistic limitations. These results meet the specified synthetic release gate; they do not establish general production accuracy or provider availability. No real personal records were submitted.
+
 ## Nonfunctional verification
 
 | Area | Target | Method |
@@ -94,4 +100,4 @@ Provider mocks check orchestration and failures; separately label live-model eva
 | Observability | Run ID, status, tool names, time, available usage | Redacted log inspection |
 | Reproducibility | Clean database setup from README | Fresh local environment walkthrough |
 
-Application checks are unavailable until scaffolding. See [Testing Guidelines](../Guidelines/Testing.md) for honest reporting and command registration.
+See [Building](../Guidelines/Building.md) for executable backend/MCP commands and [Testing Guidelines](../Guidelines/Testing.md) for honest reporting and command registration. Planned frontend and Agent checks must not be reported as passed based on backend results.

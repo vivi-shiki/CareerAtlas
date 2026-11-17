@@ -1,10 +1,10 @@
 # CareerAtlas UI Framework and Visual Design
 
-Date: 2026-11-17. Status: design recommendation and reviewed mockups, not an implemented application. The requested deliverable is one coordinated UI suite and UX flows, not competing themes or application scaffolding.
+Date: 2026-11-17; implementation update 2026-11-18. Status: reviewed visual targets with static Vue screens, live business UI and an integrated public Agent panel. Separate interaction and visual evidence is recorded in the [acceptance ledger](../TaskLogs/2026-11-18-p0-implementation.md).
 
 ## Recommendation
 
-Use **shadcn-vue + Tailwind CSS**, with Vue 3 / TypeScript. Prefer Laravel's Vue starter kit and Inertia at bootstrap, subject to the existing architecture decision. Do not change the confirmed Laravel/PostgreSQL direction. No dependencies have been installed in the application; exact versions remain bootstrap decisions.
+Use **shadcn-vue + Tailwind CSS**, with Vue 3 / TypeScript. The implementation uses a Laravel same-origin JSON API and Vite asset integration, as selected in the [architecture](KB_CareerAtlas_Design_Architecture.md). Source-owned shadcn-vue primitives and Lucide Vue icons are installed; exact reproducible versions are in `package-lock.json`. Laravel and PostgreSQL remain the backend foundation.
 
 CareerAtlas needs both a calm reading surface and precise editing/publication controls. Source-owned components make a shared design vocabulary practical across these different surfaces. The tradeoff is responsibility for component updates, accessibility checks, and regression review. The library alone does not supply CareerAtlas authorization, citation correctness, or domain workflows.
 
@@ -111,4 +111,4 @@ P1 adds private AI capture with editable drafts and at most two clarifying quest
 
 Open the [design pack](../../design/2026-11-17/README.md) for three final mockups, four rendered UX diagrams, editable DOT sources, generation prompts, and a static review gallery. Canonical behavior remains in [Functional Requirements](KB_CareerAtlas_FunctionalRequirements.md), [User Experience](KB_CareerAtlas_Design_UserExperience.md), [Authorization](KB_CareerAtlas_Design_Authorization.md), and [Data Model](KB_CareerAtlas_Design_DataModel.md).
 
-This task does not implement application screens, publish a portfolio, deploy infrastructure, or change release scope. Framework choice is the design recommendation requested here; Inertia adoption, package versions, initial locale, and final acceptance of the visual direction remain implementation decisions.
+The original design pack remains the visual reference. The subsequent implementation supports English, Simplified Chinese, and Japanese interface labels while preserving user-authored content in its original language; see [Localization](KB_CareerAtlas_Localization.md). Static review routes are restricted to local/testing environments and use fictional fixtures; they do not publish data or invoke a model. Actual publication, frontend behavior and P0 Agent integration have separate acceptance gates. P1/P2 remain deferred.

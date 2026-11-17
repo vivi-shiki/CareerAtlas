@@ -7,7 +7,7 @@ $repoRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..\..')).Path
 $problems = [System.Collections.Generic.List[string]]::new()
 $requiredFiles = @(
     '.gitignore',
-    'README.md', 'AGENTS.md', 'CLAUDE.md', 'Project.md',
+    'README.md', 'README.zh-CN.md', 'README.ja.md', 'AGENTS.md', 'CLAUDE.md', 'Project.md',
     '.github/copilot-instructions.md',
     '.github/KnowledgeBase/Index.md',
     '.github/KnowledgeBase/Sources.md',
@@ -73,7 +73,8 @@ foreach ($document in $documents) {
         continue
     }
     # A consistency guard for this English baseline, not general language detection.
-    if ($content -match '[\u3040-\u30ff\u3400-\u9fff]') {
+    $translatedReadmes = @((Join-Path $repoRoot 'README.zh-CN.md'), (Join-Path $repoRoot 'README.ja.md'))
+    if ($document.FullName -notin $translatedReadmes -and $content -match '[\u3040-\u30ff\u3400-\u9fff]') {
         $problems.Add("Review non-English text in: $($document.FullName)")
     }
     if (([regex]::Matches($content, '(?m)^```').Count % 2) -ne 0) {

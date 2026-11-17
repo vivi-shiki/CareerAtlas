@@ -4,6 +4,9 @@ These files follow GacUI's stage markers and record reusable CareerAtlas develop
 
 | File | Purpose |
 | --- | --- |
+| [2026-11-18-baseline-commits.md](2026-11-18-baseline-commits.md) | Explained P0 application, tests, and documentation commit sequence |
+| [2026-11-18-localization.md](2026-11-18-localization.md) | Three-language product/README implementation and interaction/layout acceptance |
+| [2026-11-18-p0-implementation.md](2026-11-18-p0-implementation.md) | Ten-gate implementation and acceptance evidence |
 | [Copilot_Scrum.md](Copilot_Scrum.md) | Backlog, phases, and dependencies |
 | [Copilot_Task.md](Copilot_Task.md) | Current problem and design |
 | [Copilot_Planning.md](Copilot_Planning.md) | Ordered work and verification plan |
@@ -15,7 +18,7 @@ These files follow GacUI's stage markers and record reusable CareerAtlas develop
 | [2026-11-17-uiux-design.md](2026-11-17-uiux-design.md) | UI/UX design rationale, deliverables, and verification |
 | [2026-11-18-product-design-publication.md](2026-11-18-product-design-publication.md) | Public product design references and publication boundary |
 
-The initial task, documentation initialization, is complete. The product and deployment follow-up has its own record above; the original stage logs retain their task identity. Application and infrastructure backlog items are planned and unstarted.
+The initial task, documentation initialization, is complete. The product and deployment follow-up has its own record above; the original stage logs retain their task identity. P0 application implementation and acceptance are recorded in the ten-gate ledger. P1/P2 and cloud infrastructure remain planned.
 
 Before reusing current task logs for another task, archive the completed task together under a dated, descriptive subdirectory, preserving internal context. Keep the backlog current. Do not erase unfinished work or interpret template headings as actual findings.
 

@@ -1,12 +1,12 @@
 # CareerAtlas Agent Tools and Runtime
 
-Status: proposed contracts. Provider and model are not selected. P0 supports only `portfolio_qa`.
+Status: P0 contracts implemented; final acceptance is tracked in the [execution ledger](../TaskLogs/2026-11-18-p0-implementation.md). P0 supports only public `portfolio_qa`. Runtime provider/model settings remain local. See the [implementation decision and interaction tests](KB_CareerAtlas_Agent_P0.md).
 
 ## Modes
 
 | Mode | Scope | Output | Phase |
 | --- | --- | --- | --- |
-| portfolio_qa | One permitted publication or confirmed owner scope | Answer, citations, information gaps | P0 |
+| portfolio_qa | One permitted publication | Answer, citations, information gaps | P0 |
 | experience_capture | Owner-selected project/context | Follow-up questions, editable draft, missing fields | P1 |
 | interview_prep | Owner's records and private preparation | Example suggestions, drafts, expression feedback | P1 |
 | opportunity_curate | Owner's records and one opportunity | Evidence mapping and content suggestions | P1 |
@@ -16,15 +16,15 @@ Status: proposed contracts. Provider and model are not selected. P0 supports onl
 
 ### search_experiences
 
-- Input: `query`, optional skill and occurrence-time filters.
+- P0 input: `query` (up to 200 characters). Skill/date questions use text retrieval; structured filters remain a later extension.
 - Server context: principal, tenant when applicable, publication/version, allowed fields.
-- Output: authorized record summaries with source handles and version IDs.
+- Output: up to 16 authorized field excerpts, source handles and version IDs, including selected profile fields. Excerpts are capped at 1,000 characters.
 - Filter access before retrieval/ranking and before counts; do not retrieve everything and ask the model to hide private data.
 
 ### get_experience
 
-- Input: an `experience_id` or a validated source handle from the scoped search.
-- Output: authorized fields, user-entered evidence excerpts, provenance, and source version.
+- P0 input: `experience_id` from the scoped search.
+- Output: up to 20 selected field excerpts, user-entered evidence/provenance and source version; at most 1,000 characters per excerpt.
 - Recheck authorization independently; a returned ID is not a reusable permission token.
 - In public mode return the publication's version, not the latest private revision.
 
@@ -48,9 +48,9 @@ Every verifiable experience claim needs supporting records. Existence checks on 
 
 ## Bounded loop
 
-Authorize -> search -> optionally read -> generate -> validate citations and current access -> respond. Suggested configurable defaults are at most 4 tool calls, a 45-second overall deadline, a 2,000-character input, and the latest 10 authorized conversation turns.
+Authorize -> search -> optionally read -> generate -> validate citations and current access -> respond. Implemented bounds are at most four tool calls (including `finish_answer`), four provider steps, a 45-second overall deadline, a 2,000-character input, and the latest ten authorized completed turns. The last available step exposes only the terminal schema. A refusal or information gap may finish without an unrelated source lookup; substantive claims still require retrieved citations.
 
-Use per-user limits for authenticated use and session/IP limits for anonymous use. Set concrete quotas after measuring representative MVP workloads. Bound result size and provider output during implementation. On cancellation do not start additional tools; record any already-incurred usage accurately.
+Use session/IP limits for P0 visitors: ten questions per browser principal per ten minutes and thirty per IP per hour, with separate conversation-creation limits. Keep the runtime cache persistent. Output is capped at 2,000 tokens per call. An optional publication allowlist restricts staged rollout. On cancellation do not start additional tools; record any already-incurred usage accurately.
 
 ## Failure and isolation
 
