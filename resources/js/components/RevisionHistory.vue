@@ -5,6 +5,7 @@ import { op } from '@/lib/api'
 import { useAction } from '@/composables/useFormState'
 import AppDialog from './AppDialog.vue'
 import FormFeedback from './FormFeedback.vue'
+import type { Source } from '@/types/p1'
 const props = defineProps<{ id: string; kind: 'experience' | 'answer' }>()
 interface Revision {
     id: string
@@ -42,6 +43,9 @@ function display(value: unknown): string {
           ? JSON.stringify(value, null, 2)
           : String(value)
 }
+function sources(value: unknown): Source[] {
+    return Array.isArray(value) ? (value as Source[]) : []
+}
 async function load() {
     open.value = true
     const result = await action.run(() =>
@@ -69,7 +73,19 @@ async function load() {
             <time>{{ new Date(row.created_at).toLocaleString(locale) }}</time>
             <template v-if="kind === 'answer'"
                 ><p>{{ row.payload.question }}</p>
-                <p class="p1-history">{{ row.payload.answer }}</p></template
+                <p class="p1-history">{{ row.payload.answer }}</p>
+                <details v-if="sources(row.payload.sources).length">
+                    <summary>{{ t('Sources') }}</summary>
+                    <blockquote
+                        v-for="source in sources(row.payload.sources)"
+                        :key="source.id"
+                        class="p1-source"
+                    >
+                        <p>{{ source.content.title }}</p>
+                        <p>{{ source.content.personal_action }}</p>
+                        <small>{{ t('Source version') }}: {{ source.record_version_id }}</small>
+                    </blockquote>
+                </details></template
             >
             <dl v-else>
                 <template v-for="change in row.differences" :key="change.field"

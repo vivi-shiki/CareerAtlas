@@ -10,14 +10,15 @@ import TargetLanguage from '@/components/TargetLanguage.vue'
 import PublicationSelection from '@/components/PublicationSelection.vue'
 import PortfolioContent from '@/components/PortfolioContent.vue'
 import SourceFreshness from '@/components/SourceFreshness.vue'
-import { op } from '@/lib/api'
+import OwnerAssistant from '@/components/OwnerAssistant.vue'
+import { op, ApiError } from '@/lib/api'
 import { sourceChoices, downloadMarkdown } from '@/lib/p1'
 import { portfolioView } from '@/lib/portfolio'
 import { currentUser } from '@/lib/session'
 import { useAction, useDraftGuard } from '@/composables/useFormState'
 import { confirmAction } from '@/composables/useConfirm'
 import type { Experience, Preview, Selection } from '@/types/domain'
-import type { ExportDocument, Opportunity } from '@/types/p1'
+import type { ExportDocument, Opportunity, OwnerApplication } from '@/types/p1'
 const route = useRoute(),
     router = useRouter(),
     row = ref<Opportunity | null>(null),
@@ -183,6 +184,30 @@ async function downloadTranslated() {
     if (value) downloadMarkdown(value.filename, value.markdown)
 }
 onMounted(load)
+async function appliedProposal(value: OwnerApplication) {
+    if (value.output.translations) {
+        await action.run(async () => {
+            const document = await op<ExportDocument>('export_opportunity', { id: row.value!.id })
+            if (document.source_digest !== value.export_digest)
+                throw new ApiError(409, 'Review the current export before downloading.')
+            const translations = new Map(
+                value.output.translations!.map((field) => [field.key, field.text]),
+            )
+            document.fields.forEach((field) => {
+                field.text = translations.get(field.key) ?? field.text
+            })
+            exported.value = document
+            reviewed.value = false
+        })
+        return
+    }
+    if (value.output.mapping) {
+        const ids = new Set(value.output.mapping.flatMap((mapping) => mapping.source_ids))
+        form.selection.items = form.selection.items.filter((item) => ids.has(item.experience_id))
+        return
+    }
+    apply(value.subject as Opportunity)
+}
 </script>
 <template>
     <WorkspaceShell active="Opportunities" :name="currentUser?.name"
@@ -243,6 +268,22 @@ onMounted(load)
                                     </button>
                                 </fieldset>
                             </form>
+                            <OwnerAssistant
+                                v-if="row"
+                                :subject="row"
+                                purpose="mapping"
+                                kind="opportunity"
+                                :disabled="action.busy.value || guard.dirty.value"
+                                @applied="appliedProposal"
+                            />
+                            <OwnerAssistant
+                                v-if="row"
+                                :subject="row"
+                                purpose="introduction"
+                                kind="opportunity"
+                                :disabled="action.busy.value || guard.dirty.value"
+                                @applied="appliedProposal"
+                            />
                             <template v-if="row"
                                 ><button
                                     :disabled="
@@ -323,6 +364,13 @@ onMounted(load)
                             >
                                 {{ t('Revoke this page') }}
                             </button>
+                            <OwnerAssistant
+                                :subject="row"
+                                purpose="export"
+                                kind="opportunity"
+                                :disabled="action.busy.value || guard.dirty.value"
+                                @applied="appliedProposal"
+                            />
                             <template v-if="exported"
                                 ><p>
                                     {{

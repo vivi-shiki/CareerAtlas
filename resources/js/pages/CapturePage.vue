@@ -8,13 +8,14 @@ import LoadState from '@/components/LoadState.vue'
 import FormFeedback from '@/components/FormFeedback.vue'
 import TargetLanguage from '@/components/TargetLanguage.vue'
 import OccurrenceFields from '@/components/OccurrenceFields.vue'
+import OwnerAssistant from '@/components/OwnerAssistant.vue'
 import { op } from '@/lib/api'
 import { projectChoices } from '@/lib/p1'
 import { currentUser } from '@/lib/session'
 import { useAction, useDraftGuard } from '@/composables/useFormState'
 import { confirmAction } from '@/composables/useConfirm'
 import type { Project, Experience } from '@/types/domain'
-import type { Capture, CaptureDraft } from '@/types/p1'
+import type { Capture, CaptureDraft, OwnerApplication } from '@/types/p1'
 const route = useRoute(),
     router = useRouter(),
     row = ref<Capture | null>(null),
@@ -45,9 +46,14 @@ function apply(value: Capture) {
         project_id: value.project_id,
         notes: value.notes,
         target_language: value.target_language,
-        draft: structuredClone(value.draft),
+        draft: { ...structuredClone(value.draft) },
     })
     guard.markSaved()
+}
+function appliedProposal(value: OwnerApplication) {
+    apply(value.subject as Capture)
+    skills.value = []
+    candidates.value = []
 }
 async function load() {
     const data = await loading.run(async () => ({
@@ -126,6 +132,25 @@ onMounted(load)
             <LoadState :loading="loading.busy.value" :error="loading.error.value" @retry="load"
                 ><div class="p1-grid">
                     <section class="p1-card">
+                        <OwnerAssistant
+                            v-if="row && !row.applied_experience_id"
+                            :subject="row"
+                            purpose="capture"
+                            kind="capture"
+                            :disabled="action.busy.value || guard.dirty.value"
+                            @applied="appliedProposal"
+                        />
+                        <div v-if="row?.questions.length" class="p1-source">
+                            <h3>{{ t('Optional follow-up questions') }}</h3>
+                            <p v-for="question in row.questions" :key="question">{{ question }}</p>
+                            <p>
+                                {{
+                                    t(
+                                        'Add missing facts to your notes or source records, save, then request another draft.',
+                                    )
+                                }}
+                            </p>
+                        </div>
                         <FormFeedback :error="action.error.value" :message="action.message.value" />
                         <form @submit.prevent="save">
                             <fieldset :disabled="action.busy.value || !!row?.applied_experience_id">

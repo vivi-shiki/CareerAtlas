@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 final class Store
 {
-    private const JSON = ['occurrence', 'contact_links', 'payload', 'profile', 'selection', 'response', 'metadata', 'source_versions', 'draft', 'questions', 'sources', 'attempts', 'introduction_sources', 'context', 'output'];
+    private const JSON = ['occurrence', 'contact_links', 'payload', 'profile', 'selection', 'response', 'metadata', 'source_versions', 'draft', 'questions', 'sources', 'attempts', 'introduction_sources', 'context', 'output', 'application_result'];
 
     public static function decode(object|array $row): array
     {
@@ -23,6 +23,12 @@ final class Store
 
     private static function encode(array $data): array
     {
+        // Keep absolute instants intact when PHP and PostgreSQL use different time zones.
+        foreach ($data as $key => $value) {
+            if ($value instanceof \DateTimeInterface) {
+                $data[$key] = $value->format(DATE_ATOM);
+            }
+        }
         foreach (self::JSON as $key) {
             if (isset($data[$key]) && is_array($data[$key])) {
                 $data[$key] = json_encode($data[$key], JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE);

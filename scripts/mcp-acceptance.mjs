@@ -56,6 +56,25 @@ export async function runAcceptance(configPath = '.local/mcp-acceptance.json', e
     const captured = await call('apply_capture', { id: capture.id, expected_version: capture.version });
     assert.equal(captured.status, 'draft');
     assert.equal(captured.provenance, 'manual');
+    let ownerAiAccepted = false;
+    const ownerStatus = await call('owner_ai_status');
+    if (process.env.MCP_OWNER_AI_ACCEPTANCE === '1') {
+      assert.equal(ownerStatus.available, true, 'Owner AI acceptance requires an explicitly enabled synthetic test environment.');
+      const aiCapture = await call('create_capture', { project_id: project.id, notes: 'I added keyboard navigation tests.' });
+      let run = await call('start_owner_ai', { purpose: 'capture', subject_id: aiCapture.id, expected_version: aiCapture.version, request_id: crypto.randomUUID() });
+      const deadline = Date.now() + 50000;
+      while (['queued', 'running'].includes(run.state) && Date.now() < deadline) {
+        await new Promise(resolve => setTimeout(resolve, 900));
+        run = await call('get_owner_ai', { id: run.id });
+      }
+      assert.equal(run.state, 'completed');
+      const applied = await call('apply_owner_ai', { id: run.id });
+      assert.equal(applied.subject.provenance, 'ai_assisted');
+      assert.equal(applied.subject.applied_experience_id, null);
+      run = await call('start_owner_ai', { purpose: 'capture', subject_id: aiCapture.id, expected_version: applied.subject.version, request_id: crypto.randomUUID() });
+      assert.equal((await call('cancel_owner_ai', { id: run.id })).state, 'cancelled');
+      ownerAiAccepted = true;
+    }
     assert.ok((await call('get_experience_history', { id: experience.id })).length >= 3);
     const preparation = await call('create_preparation', { topic: 'Frontend engineering', requirements: 'Explain accessible interaction design.', target_language: 'ja', experience_ids: [experience.id] });
     let answer = await call('create_prepared_answer', { preparation_id: preparation.id, question: 'What did you contribute?', answer: 'I improved keyboard focus handling and tests.' });
@@ -82,7 +101,7 @@ export async function runAcceptance(configPath = '.local/mcp-acceptance.json', e
     await call('get_public_citation', { slug: publication.slug, id: experience.id }, true);
     await call('revoke_publication', { id: publication.id, expected_version: publication.version });
     await call('get_public_portfolio', { slug: publication.slug }, true);
-    const result = { passed: true, protocol: 'MCP Streamable HTTP via official TypeScript SDK', tool_count: tools.length, trace, completed_at: new Date().toISOString() };
+    const result = { passed: true, protocol: 'MCP Streamable HTTP via official TypeScript SDK', tool_count: tools.length, owner_ai_accepted: ownerAiAccepted, trace, completed_at: new Date().toISOString() };
     await writeFile(evidencePath, JSON.stringify(result, null, 2) + '\n');
     return { passed: true, tool_count: tools.length, calls: trace.length, evidencePath };
   } finally { await client.close(); }

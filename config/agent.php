@@ -2,6 +2,8 @@
 
 return [
     'enabled' => (bool) env('AI_ENABLED', false),
+    // Owner drafts require a separate explicit launch decision; never inherit public-page access.
+    'owner_allowlist' => env('AI_OWNER_ALLOWLIST', ''),
     'driver' => env('AI_DRIVER', 'gemini'),
     'model' => env('AI_MODEL', ''),
     'key' => env('GEMINI_API_KEY', ''),

@@ -12,10 +12,16 @@ Artisan::command('agent:prune', function () {
 Schedule::command('agent:prune')->daily();
 
 Artisan::command('practice:prune', function () {
-    $count = DB::table('practice_sessions')->where('retained', false)->where('expires_at', '<=', now())->delete();
+    $count = DB::table('practice_sessions')->where('retained', false)->where('expires_at', '<=', now()->toIso8601String())->delete();
     $this->info('Expired practice sessions removed: '.$count);
 });
 Schedule::command('practice:prune')->daily();
+
+Artisan::command('owner-ai:prune', function () {
+    $count = DB::table('owner_ai_runs')->where('created_at', '<=', now()->subDay()->toIso8601String())->delete();
+    $this->info('Expired draft runs removed: '.$count);
+});
+Schedule::command('owner-ai:prune')->daily();
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());

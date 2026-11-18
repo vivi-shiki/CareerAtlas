@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { t } from '@/i18n'
 import WorkspaceShell from '@/components/WorkspaceShell.vue'
@@ -10,13 +10,14 @@ import TargetLanguage from '@/components/TargetLanguage.vue'
 import SourcePicker from '@/components/SourcePicker.vue'
 import SourceFreshness from '@/components/SourceFreshness.vue'
 import RevisionHistory from '@/components/RevisionHistory.vue'
+import OwnerAssistant from '@/components/OwnerAssistant.vue'
 import { op } from '@/lib/api'
 import { sourceChoices } from '@/lib/p1'
 import { currentUser } from '@/lib/session'
 import { useAction, useDraftGuard } from '@/composables/useFormState'
 import { confirmAction } from '@/composables/useConfirm'
 import type { Experience } from '@/types/domain'
-import type { Answer, Preparation, Practice } from '@/types/p1'
+import type { Answer, Preparation, Practice, OwnerApplication } from '@/types/p1'
 const route = useRoute(),
     router = useRouter(),
     row = ref<Preparation | null>(null),
@@ -194,6 +195,36 @@ async function practiceAction(name: string) {
     }
 }
 onMounted(load)
+const feedbackLabels: Record<string, string> = {
+    specificity: 'Specificity',
+    structure: 'Structure',
+    consistency: 'Consistency',
+    clarity: 'Clarity',
+}
+const currentFeedback = computed(
+    () =>
+        (practice.value?.attempts[practice.value.current_index]?.feedback || null) as Record<
+            string,
+            string
+        > | null,
+)
+async function appliedProposal(value: OwnerApplication) {
+    if (value.output.mapping) {
+        form.experience_ids = [
+            ...new Set(value.output.mapping.flatMap((mapping) => mapping.source_ids)),
+        ]
+        return
+    }
+    if (value.output.feedback) {
+        applyPractice(value.subject as Practice)
+        return
+    }
+    const saved = value.subject as Answer
+    answer.value = saved
+    Object.assign(answerForm, { question: saved.question, answer: saved.answer })
+    savedAnswer.value = JSON.stringify(answerForm)
+    await action.run(refresh)
+}
 </script>
 <template>
     <WorkspaceShell active="Preparation" :name="currentUser?.name"
@@ -257,6 +288,14 @@ onMounted(load)
                                     </button>
                                 </fieldset>
                             </form>
+                            <OwnerAssistant
+                                v-if="row"
+                                :subject="row"
+                                purpose="mapping"
+                                kind="preparation"
+                                :disabled="action.busy.value || JSON.stringify(form) !== savedBrief"
+                                @applied="appliedProposal"
+                            />
                         </section>
                         <template v-if="row"
                             ><section class="p1-card">
@@ -272,30 +311,43 @@ onMounted(load)
                                     </button>
                                 </div>
                                 <SourceFreshness :changes="answer?.source_changes" />
+                                <OwnerAssistant
+                                    :subject="row"
+                                    purpose="answer"
+                                    kind="preparation"
+                                    :question="answerForm.question"
+                                    :disabled="
+                                        action.busy.value ||
+                                        !answerForm.question.trim() ||
+                                        JSON.stringify(form) !== savedBrief ||
+                                        answerForm.answer !== (answer?.answer || '')
+                                    "
+                                    @applied="appliedProposal"
+                                />
                                 <form @submit.prevent="saveAnswer()">
                                     <fieldset :disabled="action.busy.value">
-                                    <label
-                                        >{{ t('Question')
-                                        }}<input
-                                            v-model="answerForm.question"
-                                            name="question"
-                                            required
-                                            maxlength="2000" /></label
-                                    ><label
-                                        >{{ t('Prepared answer')
-                                        }}<textarea
-                                            v-model="answerForm.answer"
-                                            name="answer"
-                                            rows="7"
-                                            maxlength="16000"
-                                        /></label
-                                    ><button
-                                        type="submit"
-                                        class="p1-primary"
-                                        :disabled="action.busy.value"
-                                    >
-                                        {{ t('Save answer draft') }}
-                                    </button>
+                                        <label
+                                            >{{ t('Question')
+                                            }}<input
+                                                v-model="answerForm.question"
+                                                name="question"
+                                                required
+                                                maxlength="2000" /></label
+                                        ><label
+                                            >{{ t('Prepared answer')
+                                            }}<textarea
+                                                v-model="answerForm.answer"
+                                                name="answer"
+                                                rows="7"
+                                                maxlength="16000"
+                                            /></label
+                                        ><button
+                                            type="submit"
+                                            class="p1-primary"
+                                            :disabled="action.busy.value"
+                                        >
+                                            {{ t('Save answer draft') }}
+                                        </button>
                                     </fieldset>
                                 </form>
                                 <template v-if="answer"
@@ -363,7 +415,9 @@ onMounted(load)
                                         }}<textarea
                                             v-model="attempt"
                                             rows="6"
-                                            :disabled="action.busy.value || practice.state !== 'active'"
+                                            :disabled="
+                                                action.busy.value || practice.state !== 'active'
+                                            "
                                         /></label
                                     ><button
                                         :disabled="
@@ -414,8 +468,24 @@ onMounted(load)
                                                 'Unsaved practice expires after one day. Keep it explicitly to retain it.',
                                             )
                                         }}
-                                    </p></template
-                                >
+                                    </p>
+                                    <OwnerAssistant
+                                        v-if="practice.attempts[practice.current_index]"
+                                        :subject="practice"
+                                        purpose="feedback"
+                                        kind="practice"
+                                        :disabled="action.busy.value || attempt !== savedAttempt"
+                                        @applied="appliedProposal"
+                                    />
+                                    <dl v-if="currentFeedback" class="p1-source">
+                                        <template
+                                            v-for="(value, field) in currentFeedback"
+                                            :key="field"
+                                            ><dt>{{ t(feedbackLabels[field] || field) }}</dt>
+                                            <dd>{{ value }}</dd></template
+                                        >
+                                    </dl>
+                                </template>
                             </section></template
                         >
                     </div>

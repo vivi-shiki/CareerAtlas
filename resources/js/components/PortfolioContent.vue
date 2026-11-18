@@ -40,7 +40,11 @@ defineEmits<{ project: [id: string]; skill: [name: string] }>()
         <p v-if="!portfolio.projects.length" class="empty-inline">
             {{ t('No published work is available.') }}
         </p>
-        <article v-for="project in portfolio.projects" :key="project.id" class="portfolio-project">
+        <article
+            v-for="(project, index) in portfolio.projects"
+            :key="`${project.id}-${index}`"
+            class="portfolio-project"
+        >
             <h3>{{ project.title }}</h3>
             <p class="project-meta">
                 {{ project.type

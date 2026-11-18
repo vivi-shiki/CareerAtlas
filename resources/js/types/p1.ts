@@ -86,3 +86,25 @@ export interface ExportDocument {
     language: string
     fields: { key: string; label: string; text: string; source_version: string | null }[]
 }
+
+export interface OwnerProposal {
+    text?: string
+    draft?: CaptureDraft
+    mapping?: { requirement: string; source_ids: string[]; reason: string; gap: string }[]
+    feedback?: Record<string, string>
+    translations?: { key: string; text: string }[]
+    questions: string[]
+    insufficient_information: boolean
+    citations: {
+        handle: string
+        field: string
+        excerpt: string
+        experience_id: string | null
+        source_version: string | null
+    }[]
+}
+export interface OwnerApplication {
+    subject: unknown
+    output: OwnerProposal
+    export_digest: string | null
+}

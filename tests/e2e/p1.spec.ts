@@ -1,5 +1,65 @@
 import { test, expect, projectFixture, experienceFixture, selection, noOverflow } from './helpers'
 
+test('an empty saved capture can be completed manually after reload', async ({ page, owner }) => {
+    const project = await projectFixture(owner)
+    const capture = await owner.op('create_capture', {
+        project_id: project.id,
+        notes: 'Fictional notes without a structured draft.',
+    })
+    await page.goto(`/capture/${capture.id}`)
+    await page.getByLabel('Title', { exact: true }).fill('Manually completed draft')
+    await page.getByLabel('Personal action', { exact: true }).fill('I completed the notes.')
+    await page.getByRole('button', { name: 'Save notes', exact: true }).click()
+    await expect(
+        page.getByRole('button', { name: 'Add as new experience', exact: true }),
+    ).toBeEnabled()
+    await page.reload()
+    await expect(page.getByLabel('Title', { exact: true })).toHaveValue('Manually completed draft')
+})
+
+test('interleaved project experiences keep their exact order in preview and public view', async ({
+    page,
+    owner,
+}) => {
+    const a = await projectFixture(owner, { title: 'Project A' }),
+        b = await projectFixture(owner, { title: 'Project B' })
+    const first = await experienceFixture(owner, a.id, {
+            personal_action: 'First A contribution.',
+        }),
+        middle = await experienceFixture(owner, b.id, {
+            personal_action: 'Middle B contribution.',
+        }),
+        last = await experienceFixture(owner, a.id, { personal_action: 'Last A contribution.' })
+    const opportunity = await owner.op('create_opportunity', {
+        title: 'Ordered portfolio',
+        direction: 'Frontend',
+        selection: {
+            profile_fields: [],
+            items: [first, middle, last].map((record) => ({
+                experience_id: record.id,
+                fields: ['title', 'personal_action'],
+                project_fields: ['title'],
+            })),
+        },
+    })
+    await page.goto(`/opportunities/${opportunity.id}`)
+    await page.getByRole('button', { name: 'Review public preview', exact: true }).click()
+    await expect(page.getByTestId('opportunity-preview').locator('.prose-value')).toHaveText([
+        'First A contribution.',
+        'Middle B contribution.',
+        'Last A contribution.',
+    ])
+    await page.getByRole('button', { name: 'Publish this opportunity', exact: true }).click()
+    await expect(page.getByRole('link', { name: 'Open public page', exact: true })).toBeVisible()
+    const saved = await owner.op('get_opportunity', { id: opportunity.id })
+    await page.goto(`/p/${saved.publication.slug}`)
+    await expect(page.locator('.portfolio-content .prose-value')).toHaveText([
+        'First A contribution.',
+        'Middle B contribution.',
+        'Last A contribution.',
+    ])
+})
+
 test('capture persists, shows duplicates and applies only an unconfirmed draft', async ({
     page,
     owner,

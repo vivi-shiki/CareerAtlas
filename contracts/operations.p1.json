@@ -1294,5 +1294,118 @@
         "id"
       ]
     }
+  },
+  "owner_ai_status": {
+    "description": "Read availability of owner-only AI drafting.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {},
+      "required": []
+    }
+  },
+  "start_owner_ai": {
+    "description": "Start a bounded proposal against an owned subject and selected source versions. Does not confirm or publish.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "purpose": {
+          "type": "string",
+          "enum": [
+            "capture",
+            "mapping",
+            "answer",
+            "introduction",
+            "feedback",
+            "export"
+          ]
+        },
+        "subject_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "subject_kind": {
+          "type": "string",
+          "enum": [
+            "capture",
+            "preparation",
+            "practice",
+            "opportunity"
+          ]
+        },
+        "question": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "purpose",
+        "subject_id",
+        "expected_version",
+        "request_id"
+      ]
+    }
+  },
+  "get_owner_ai": {
+    "description": "Read an owned proposal after rechecking source access and freshness.",
+    "read_only": true,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "cancel_owner_ai": {
+    "description": "Cancel an owned proposal and discard late output.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "apply_owner_ai": {
+    "description": "Explicitly apply a current proposal as a private draft or retain practice feedback. Never confirms or publishes.",
+    "read_only": false,
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
   }
 }

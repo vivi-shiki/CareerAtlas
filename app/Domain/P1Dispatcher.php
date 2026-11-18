@@ -2,6 +2,8 @@
 
 namespace App\Domain;
 
+use App\Agent\OwnerAgentService;
+
 final class P1Dispatcher
 {
     public function execute(int $owner, string $operation, array $input): array
@@ -11,6 +13,10 @@ final class P1Dispatcher
         $opportunity = app(OpportunityService::class);
 
         return match ($operation) {
+            'owner_ai_status' => ['available' => app(OwnerAgentService::class)->available($owner)],
+            'start_owner_ai' => app(OwnerAgentService::class)->start($owner, $input),
+            'get_owner_ai', 'cancel_owner_ai' => app(OwnerAgentService::class)->read($owner, $input['id'], $operation === 'cancel_owner_ai'),
+            'apply_owner_ai' => app(OwnerAgentService::class)->apply($owner, $input['id']),
             'create_capture', 'update_capture' => $capture->save($owner, $input),
             'get_capture' => $capture->get($owner, $input['id']),
             'list_captures' => $capture->listing($owner),

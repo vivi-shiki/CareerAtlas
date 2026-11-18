@@ -21,6 +21,11 @@ TEXT;
 
     public function generate(array $contents, array $declarations, float $timeout): array
     {
+        return $this->generateWithInstructions($contents, $declarations, $timeout, self::INSTRUCTIONS, config('agent.max_output_tokens'));
+    }
+
+    public function generateWithInstructions(array $contents, array $declarations, float $timeout, string $instructions, int $maxTokens): array
+    {
         if (! preg_match('/^[a-zA-Z0-9._-]+$/', config('agent.model', '')) || ! config('agent.key')) {
             throw new AgentFailure('unavailable');
         }
@@ -28,11 +33,11 @@ TEXT;
             $response = Http::withHeaders(['x-goog-api-key' => config('agent.key')])
                 ->connectTimeout(min(5, $timeout))->timeout(max(1, $timeout))
                 ->post('https://generativelanguage.googleapis.com/v1beta/models/'.config('agent.model').':generateContent', [
-                    'systemInstruction' => ['parts' => [['text' => self::INSTRUCTIONS]]],
+                    'systemInstruction' => ['parts' => [['text' => $instructions]]],
                     'contents' => $contents,
                     'tools' => [['functionDeclarations' => $declarations]],
                     'toolConfig' => ['functionCallingConfig' => ['mode' => 'ANY']],
-                    'generationConfig' => ['temperature' => 0.1, 'maxOutputTokens' => config('agent.max_output_tokens')],
+                    'generationConfig' => ['temperature' => 0.1, 'maxOutputTokens' => $maxTokens],
                 ]);
         } catch (ConnectionException) {
             throw new AgentFailure('timeout');

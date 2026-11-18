@@ -71,6 +71,16 @@ export function portfolioView(data: PublicPortfolio): PortfolioView {
             remainingWork: item.remaining_work || '',
         })
     }
+    // Preserve the owner's experience order even when a project appears again later.
+    // Consecutive experiences share a heading; separated ones keep their original position.
+    const orderedProjects: ProjectView[] = []
+    for (const item of data.items) {
+        const project = projects.get(item.project.id)!
+        const experience = project.experiences.find((value) => value.id === item.id)!
+        const previous = orderedProjects.at(-1)
+        if (previous?.id === project.id) previous.experiences.push(experience)
+        else orderedProjects.push({ ...project, experiences: [experience] })
+    }
     return {
         name: data.profile.display_name || '',
         direction: data.profile.direction || '',
@@ -89,6 +99,6 @@ export function portfolioView(data: PublicPortfolio): PortfolioView {
                   year: 'numeric',
               })
             : '',
-        projects: [...projects.values()],
+        projects: orderedProjects,
     }
 }
