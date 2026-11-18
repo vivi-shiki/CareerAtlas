@@ -4,6 +4,7 @@ import ExperienceDesign from '@/pages/design/ExperienceDesign.vue'
 import PublicationDesign from '@/pages/design/PublicationDesign.vue'
 import PublicDesign from '@/pages/design/PublicDesign.vue'
 import WorkspaceDesign from '@/pages/design/WorkspaceDesign.vue'
+import P1Design from '@/pages/design/P1Design.vue'
 
 const path = window.location.pathname
 const requestedDensity = new URLSearchParams(window.location.search).get('density')
@@ -23,7 +24,8 @@ document.title = `${titles[path.split('/')[2] || ''] || 'Workspace'} · CareerAt
 </script>
 
 <template>
-    <PublicationDesign v-if="path === '/design/publication'" :portfolio="portfolio" />
+    <P1Design v-if="path.startsWith('/design/p1-')" />
+    <PublicationDesign v-else-if="path === '/design/publication'" :portfolio="portfolio" />
     <PublicDesign v-else-if="path === '/design/portfolio'" :portfolio="portfolio" />
     <WorkspaceDesign
         v-else-if="['projects', 'skills', 'profile', 'login'].includes(path.split('/')[2] || '')"

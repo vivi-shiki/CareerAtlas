@@ -123,6 +123,7 @@ export interface PublicSkill extends SkillRef {
     project_count: number
 }
 export interface PublicPortfolio {
+    introduction?: string
     profile: Partial<Profile>
     items: PublicItem[]
     skills: PublicSkill[]

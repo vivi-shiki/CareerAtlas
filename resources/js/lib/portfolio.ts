@@ -75,6 +75,7 @@ export function portfolioView(data: PublicPortfolio): PortfolioView {
         name: data.profile.display_name || '',
         direction: data.profile.direction || '',
         bio: data.profile.biography || '',
+        introduction: data.introduction || '',
         contacts: data.profile.contact_links || [],
         preferredLanguage: t(
             ({ en: 'English', zh: 'Chinese', ja: 'Japanese' } as Record<string, string>)[

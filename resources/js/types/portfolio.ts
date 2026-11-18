@@ -32,6 +32,7 @@ export interface ProjectView {
 }
 
 export interface PortfolioView {
+    introduction?: string
     name: string
     direction?: string
     bio?: string

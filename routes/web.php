@@ -31,8 +31,8 @@ Route::prefix('api')->middleware(NoStore::class)->group(function () {
     Route::get('/public/{slug}/skills/{id}', fn (string $slug, string $id, PublicationProjection $p) => ['data' => $p->skill($slug, $id)]);
 });
 Route::view('/', 'app')->middleware(NoStore::class);
-Route::view('/{path}', 'app')->where('path', '(login|register|profile|projects|experiences|skills|publish|p)(/.*)?')->middleware(NoStore::class);
+Route::view('/{path}', 'app')->where('path', '(login|register|profile|projects|experiences|skills|publish|capture|preparation|opportunities|p)(/.*)?')->middleware(NoStore::class);
 
 if (app()->environment('local', 'testing')) {
-    Route::view('/design/{screen}', 'app')->where('screen', 'editor|publication|portfolio|projects|skills|profile|login');
+    Route::view('/design/{screen}', 'app')->where('screen', 'editor|publication|portfolio|projects|skills|profile|login|p1-capture|p1-preparation|p1-opportunity');
 }

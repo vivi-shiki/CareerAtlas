@@ -14,6 +14,9 @@ watchEffect(() => {
         profile: 'Profile',
         skills: 'Skills',
         publish: 'Publish',
+        capture: 'Capture',
+        preparation: 'Preparation',
+        opportunities: 'Opportunities',
         p: 'Public portfolio',
         design: 'Preview',
     }

@@ -10,6 +10,7 @@ import FormFeedback from '@/components/FormFeedback.vue'
 import OccurrenceFields from '@/components/OccurrenceFields.vue'
 import EvidenceEditor from '@/components/EvidenceEditor.vue'
 import ExperienceSkills from '@/components/ExperienceSkills.vue'
+import RevisionHistory from '@/components/RevisionHistory.vue'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
@@ -368,6 +369,7 @@ onMounted(load)
                 >
             </div>
             <div v-if="record" class="lifecycle-actions">
+                <RevisionHistory :id="record.id" kind="experience" />
                 <Button
                     variant="ghost"
                     :disabled="saving.busy.value"

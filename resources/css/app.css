@@ -2004,3 +2004,136 @@ html:lang(ja) {
         padding: 4px;
     }
 }
+
+/* P1 extends the accepted workspace rhythm and keeps long multilingual content fluid. */
+.p1-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr);
+    gap: 24px;
+    align-items: start;
+}
+.p1-page {
+    overflow-wrap: anywhere;
+}
+.p1-card {
+    min-width: 0;
+    border: 1px solid #dce6e1;
+    border-radius: 16px;
+    padding: 24px;
+    background: white;
+    margin-bottom: 20px;
+}
+.p1-card h2 {
+    font-size: 20px;
+    font-weight: 650;
+    margin: 0 0 18px;
+}
+.p1-card h3 {
+    font-weight: 650;
+    margin: 20px 0 10px;
+}
+.p1-card p {
+    margin: 10px 0;
+    line-height: 1.65;
+}
+.p1-card label:not(.p1-check) {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 550;
+    margin: 14px 0;
+}
+.p1-card input:not([type='checkbox']),
+.p1-card textarea,
+.p1-card select {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid #cbd9d1;
+    border-radius: 8px;
+    background: white;
+    font: inherit;
+    font-weight: 400;
+}
+.p1-card textarea {
+    resize: vertical;
+}
+.p1-card button {
+    min-height: 44px;
+    padding: 9px 15px;
+    border: 1px solid #bfcfc5;
+    border-radius: 8px;
+    margin: 5px 8px 5px 0;
+    white-space: normal;
+    max-width: 100%;
+}
+.p1-card button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+.p1-card .occurrence-fields button {
+    min-height: 44px;
+}
+.p1-card button.p1-primary {
+    background: #16704e;
+    color: white;
+    border-color: #16704e;
+}
+.p1-card :focus-visible {
+    outline: 3px solid #448bff;
+    outline-offset: 3px;
+}
+.p1-context {
+    background: #f3f8f5;
+}
+.p1-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.p1-row > label {
+    flex: 1;
+    min-width: 140px;
+}
+.p1-source {
+    padding: 14px;
+    border: 1px solid #d5e2da;
+    border-radius: 10px;
+    margin: 12px 0;
+    background: white;
+}
+.p1-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+}
+.p1-check input {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+.p1-history {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font: inherit;
+    max-height: 400px;
+    overflow: auto;
+}
+.p1-warning {
+    padding: 12px;
+    background: #fff5de;
+    border-radius: 8px;
+}
+@media (max-width: 900px) {
+    .p1-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+@media (max-width: 480px) {
+    .p1-card {
+        padding: 16px;
+    }
+}

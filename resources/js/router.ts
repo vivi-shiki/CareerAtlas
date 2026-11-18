@@ -29,6 +29,17 @@ export const router = createRouter({
         { path: '/skills', component: SkillsPage, meta: owner },
         { path: '/skills/:id', component: SkillPage, meta: owner },
         { path: '/publish', component: PublishPage, meta: owner },
+        { path: '/capture/:id?', component: () => import('@/pages/CapturePage.vue'), meta: owner },
+        {
+            path: '/preparation/:id?',
+            component: () => import('@/pages/PreparationPage.vue'),
+            meta: owner,
+        },
+        {
+            path: '/opportunities/:id?',
+            component: () => import('@/pages/OpportunityPage.vue'),
+            meta: owner,
+        },
         { path: '/p/:slug', component: PublicPage },
         { path: '/design/:screen', component: () => import('@/pages/design/DesignApp.vue') },
         { path: '/:pathMatch(.*)*', component: UnavailablePage },

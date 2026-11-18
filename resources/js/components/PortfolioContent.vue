@@ -36,6 +36,7 @@ defineEmits<{ project: [id: string]; skill: [name: string] }>()
             </p>
         </header>
         <h2 v-if="!compact" id="projects">{{ t('Selected work') }}</h2>
+        <p v-if="portfolio.introduction" class="profile-bio">{{ portfolio.introduction }}</p>
         <p v-if="!portfolio.projects.length" class="empty-inline">
             {{ t('No published work is available.') }}
         </p>

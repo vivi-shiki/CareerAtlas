@@ -49,6 +49,19 @@ const navigation = [
     { label: 'Skills', icon: GraduationCap, href: '/skills', preview: '/design/skills' },
     { label: 'Profile', icon: UserRound, href: '/profile', preview: '/design/profile' },
     { label: 'Publish', icon: Megaphone, href: '/publish', preview: '/design/publication' },
+    { label: 'Capture', icon: BookOpen, href: '/capture', preview: '/design/p1-capture' },
+    {
+        label: 'Preparation',
+        icon: GraduationCap,
+        href: '/preparation',
+        preview: '/design/p1-preparation',
+    },
+    {
+        label: 'Opportunities',
+        icon: Folder,
+        href: '/opportunities',
+        preview: '/design/p1-opportunity',
+    },
 ]
 </script>
 
