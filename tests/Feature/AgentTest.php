@@ -33,7 +33,7 @@ class AgentTest extends TestCase
         parent::setUp();
         Http::preventStrayRequests();
         Queue::fake();
-        config(['agent.enabled' => true, 'agent.driver' => 'fake', 'agent.session_limit' => 100, 'agent.ip_limit' => 100]);
+        config(['agent.enabled' => true, 'agent.driver' => 'fake', 'agent.publication_allowlist' => '*', 'agent.session_limit' => 100, 'agent.ip_limit' => 100]);
         $this->actingAs(User::factory()->create());
         $project = $this->op('create_project', ['title' => 'Fictional Atlas', 'type' => 'personal', 'role' => 'Frontend developer', 'team_outcome' => 'The team served 100 users.']);
         $exp = $this->op('create_experience', ['project_id' => $project['id'], 'title' => 'Keyboard search',

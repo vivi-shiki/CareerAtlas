@@ -198,6 +198,7 @@ server {
     add_header X-Content-Type-Options nosniff always;
     add_header Referrer-Policy same-origin always;
     add_header X-Frame-Options SAMEORIGIN always;
+    add_header Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'" always;
     location / { try_files $uri $uri/ /index.php?$query_string; }
     location ^~ /.well-known/acme-challenge/ { root /var/lib/letsencrypt; }
     location = /deployment.json { add_header Cache-Control "no-store"; }
