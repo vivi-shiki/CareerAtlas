@@ -45,7 +45,19 @@ For deterministic browser Agent tests, use the isolated browser database/server 
 
 `php artisan test --filter=AgentTest` covers orchestration, authorization, expiry, cancellation, citation validation and transport. `php scripts/agent-evaluate.php --live` is an explicit opt-in live evaluation in a configured non-production environment. It creates only fictional fixtures and writes raw results under ignored `.local/`. `--smoke` runs the first case. The runner paces requests, validates structural/source expectations, and labels semantic review pending; a human/agent review of the actual answers is still required. See [Agent acceptance](../KnowledgeBase/KB_CareerAtlas_Agent_P0.md).
 
-## Documentation
+## P1 owner workflows
+
+The P1 migrations add captures, revision history, preparations, answer versions, practice, opportunities and owner AI proposals. Use additive `php artisan migrate` against the intended database; do not reset an existing environment. `/capture`, `/preparation` and `/opportunities` provide the private owner flows. Opportunity previews share the public portfolio renderer, and each opportunity has an independent publication lifecycle.
+
+Owner AI has its own `AI_OWNER_ALLOWLIST`, empty by default. Enabling public questions does not enable private drafting. The value is a comma-separated list of owner IDs or `*` for an explicitly authorized environment. Keep actual values local. Run the existing database worker on the `agent` queue. `practice:prune` removes expired unretained practice; `owner-ai:prune` removes proposal runs older than one day. The daily scheduler invokes both. Applied drafts and explicitly retained practice remain in their domain tables.
+
+`php artisan test --filter=OwnerAgentTest` tests deterministic proposal boundaries. `npx playwright test tests/e2e/p1.spec.ts tests/e2e/owner-agent.spec.ts` verifies manual and AI-assisted workflows; the latter requires the testing-only fake provider and an explicitly enabled synthetic owner. Never enable fake transport in a production environment.
+
+`php scripts/owner-agent-evaluate.php --live` creates fictional evaluation records and uses the configured provider. `--smoke` runs one case; `--cases=zh-export,ja-export` selects named cases for an explicit recheck. Reports, source context and raw structured model calls stay in ignored local storage. Inspect the actual output language, facts, citations and gaps; a completed request is not semantic acceptance. Do not silently retry upstream quota failures.
+
+The MCP acceptance script discovers both catalogs. `MCP_OWNER_AI_ACCEPTANCE=1` additionally runs queued draft/apply/cancel calls against an explicitly enabled synthetic environment; without it, the result explicitly marks that slice untested.
+
+## Documentation validation
 
 From the repository root in PowerShell, run:
 

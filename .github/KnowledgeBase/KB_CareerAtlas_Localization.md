@@ -16,6 +16,8 @@ Translate only application-owned labels, enum display names, and system messages
 
 The public assistant already instructs the model to answer in the question's language. Its starter questions, progress, error and cancellation states, citation field labels, and controls are localized. Follow-up questions and answers are model content, and previous turns retain their original language when the interface changes. A language change does not alter conversation IDs, source handles, quoted evidence, scope hashes, publication versions, cancellation, or revocation behavior.
 
+P1 owner assistance follows the record's explicit target language, independently of the interface language. Generated capture, answer, introduction, feedback and translation prose is reviewed before application; selected-source excerpts remain verbatim. Source mapping may quote an original requirement. Proposal dates and record-type labels are rendered through the UI locale, while underlying ISO dates and enum values remain stable. All three READMEs describe the same P1 workflows.
+
 Dates use Intl with the selected language and preserve recorded year/month/day precision. Date-entry values remain explicit ISO forms so switching languages cannot reinterpret stored dates. Counts use full named messages with singular and plural English variants and natural Chinese/Japanese ordering.
 
 ## API messages
@@ -37,7 +39,7 @@ When adding UI text, add the same key to all three catalogs. Preserve named para
 - `npm run test:i18n`: catalog/parameter parity and untranslated static production-template text.
 - `npm run build`: TypeScript and production compilation.
 - `php artisan test`: API localization, regional variants and fallback, plus the domain and Agent regression suite.
-- `npm run test:e2e`: existing P0 behavior and three-language browser acceptance.
+- `npm run test:e2e`: P0/P1 behavior and three-language browser acceptance, including narrow owner proposal previews.
 - `tests/e2e/i18n.spec.ts`: language persistence, dynamic errors, input preservation, authoring, skills/aliases, evidence dialogs, preview, publication, source browsing, revocation, assistant history/errors/cancellation, and overflow checks at 1487, 768, 390, and 320 pixels.
 
 Set `E2E_I18N_SCREENSHOTS` to an absolute directory outside the repository to retain the screenshot matrix. The browser suite uses fictional records and a clearly configured testing model; this does not demonstrate real-provider response quality. Keep actual provider evaluation evidence and machine-specific runtime information in local operations records.

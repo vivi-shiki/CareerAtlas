@@ -6,7 +6,7 @@ The user requested clear explanations and staged commits before P1 development. 
 | --- | --- | --- |
 | `157fc2b` | Application runtime, owner/public workflows, bounded Agent, MCP domain tools, localization | Establish the executable product with its dependency lockfiles and privacy boundary |
 | `cc0d4bd` | PostgreSQL tests, browser tests, model doubles, evaluation and MCP scripts | Keep acceptance tooling and fictional fixtures reviewable as a separate change |
-| This documentation commit | Product/development documentation, three READMEs, implementation and localization acceptance records | Explain supported behavior, reproducible commands, evidence, and remaining scope |
+| `2848eef` | Product/development documentation, three READMEs, implementation and localization acceptance records | Explain supported behavior, reproducible commands, evidence, and remaining scope |
 
 This is a sequence of dependent commits forming one accepted baseline. The application commit includes localization because those source changes already form the current integrated implementation; the history does not pretend that an earlier English-only application was separately committed.
 

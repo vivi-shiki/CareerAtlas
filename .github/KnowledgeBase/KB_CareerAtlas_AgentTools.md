@@ -1,6 +1,6 @@
 # CareerAtlas Agent Tools and Runtime
 
-Status: P0 contracts implemented; final acceptance is tracked in the [execution ledger](../TaskLogs/2026-11-18-p0-implementation.md). P0 supports only public `portfolio_qa`. Runtime provider/model settings remain local. See the [implementation decision and interaction tests](KB_CareerAtlas_Agent_P0.md).
+Status: P0 public Q&A and P1 owner proposal contracts are implemented. Acceptance is tracked separately in the [P0 ledger](../TaskLogs/2026-11-18-p0-implementation.md) and [P1 ledger](../TaskLogs/2026-11-18-p1-implementation.md). Runtime provider/model settings remain local. See the [public Agent design](KB_CareerAtlas_Agent_P0.md) and [owner Agent design](KB_CareerAtlas_Design_OwnerAgent.md).
 
 ## Modes
 
@@ -28,17 +28,17 @@ Status: P0 contracts implemented; final acceptance is tracked in the [execution 
 - Recheck authorization independently; a returned ID is not a reusable permission token.
 - In public mode return the publication's version, not the latest private revision.
 
-### get_project_context (P1)
+### read_selected_sources (P1)
 
-- Input: `project_id`.
-- Output: permitted project context and relevant existing records for the owner.
-- The model cannot change owner or organization scope.
+- No model-supplied arguments. The authenticated start operation binds the owned subject, selected project/sources and exact versions before the run is queued.
+- Output: only the selected source bundle, plus authorized field keys for export. Private notes are excluded.
+- Introduction context contains only fields selected for that opportunity's public preview. The model cannot broaden scope or change the owner.
 
-### validate_experience_draft (P1)
+### finish_proposal (P1)
 
-- Input: candidate fields.
-- Output: required-field gaps, format errors, and items requiring owner clarification.
-- Validation does not verify the truth of employment or outcomes.
+- Purpose-specific draft, mapping, answer, introduction, four-dimension feedback or translation; exact citations, an information-gap flag and at most two optional questions.
+- Application validates schema, exact excerpts, selected source IDs, language, export keys and preserved numeric tokens. These checks do not verify the truth of employment or prove semantic faithfulness; live evaluation and owner review remain necessary.
+- This replaces the earlier conceptual project-context/validation tool names. The model receives no owner mutation tools. A separate authenticated `apply_owner_ai` operation saves a private draft or practice feedback only after the owner explicitly chooses it.
 
 ## Response contract
 

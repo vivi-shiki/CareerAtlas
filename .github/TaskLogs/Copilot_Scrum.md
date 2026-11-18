@@ -10,6 +10,7 @@ Create English AI documentation for CareerAtlas using GacUI's organization, grou
 - 2026-11-17: Standalone product documentation established. Shared release requirements are recorded in [Deployment](../KnowledgeBase/KB_CareerAtlas_Design_Deployment.md).
 - 2026-11-17: Shared documentation and ignored demo operations documentation separated; see the [separation record](2026-11-17-documentation-separation.md).
 - 2026-11-18: P0 application slices B0-B4 implemented and locally verified through the [ten-gate acceptance workflow](2026-11-18-p0-implementation.md). Cloud release and later phases remain unstarted.
+- 2026-11-18: P1 slices B5-B7 implemented through the same [ten-gate workflow](2026-11-18-p1-implementation.md), including private owner AI proposals, three-language interfaces and reviewed export. Cloud release and P2 remain unstarted.
 
 ## TASKS
 
@@ -24,9 +25,9 @@ Create English AI documentation for CareerAtlas using GacUI's organization, grou
 | B3 | P0 | Public portfolio publication and revocation | B2 | Selected immutable versions, public projection, immediate access revocation | Complete locally |
 | B4 | P0 | Source-cited portfolio agent | B3 | Scoped tools, valid citations, bounded failure handling, isolation checks | Complete locally |
 | R0 | P0 | Initial application release | B4, D1 | Supported target environment, reproducible release, P0 smoke checks and recovery procedure | Not started |
-| B5 | P1 | AI-assisted experience recording | B4 | Editable draft and explicit owner confirmation | Not started |
-| B6 | P1 | Interview preparation and practice | B4 | Source-backed preparation and editable text practice | Not started |
-| B7 | P1 | Opportunity pages and export | B3 | Curated page, independent publication lifecycle, Markdown export | Not started |
+| B5 | P1 | AI-assisted experience recording | B4 | Editable draft and explicit owner confirmation | Complete locally |
+| B6 | P1 | Interview preparation and practice | B4 | Source-backed preparation and editable text practice | Complete locally |
+| B7 | P1 | Opportunity pages and export | B3 | Curated page, independent publication lifecycle, Markdown export | Complete locally |
 | B8 | P2 | Organization collaboration | B2 and explicit organization scope | Grants, tenant isolation, confirmations, search, development discussion | Not started |
 
 Feature IDs and exact priorities remain authoritative in [Functional Requirements](../KnowledgeBase/KB_CareerAtlas_FunctionalRequirements.md). These slices may be refined when implementation is requested.

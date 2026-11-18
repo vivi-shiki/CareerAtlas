@@ -1,6 +1,6 @@
 # CareerAtlas Business API Contracts
 
-Status: P0 non-AI backend implemented; frontend and Agent acceptance remain separate gates. Authentication uses same-origin session cookies with CSRF protection. The concrete transport is a JSON operation API over shared domain services.
+Status: P0 and P1 backend operations are implemented. Frontend and live Agent acceptance are tracked in the phase ledgers. Authentication uses same-origin session cookies with CSRF protection. The concrete transport is a JSON operation API over shared domain services.
 
 ## Routes
 
@@ -19,7 +19,9 @@ Status: P0 non-AI backend implemented; frontend and Agent acceptance remain sepa
 | GET `/api/public/{slug}/experiences/{id}` | Resolve a source/citation | Current publication and source access required |
 | POST `/mcp/career` | Streamable HTTP developer MCP | User-bound bearer credential with career:manage ability; cookie sessions alone are insufficient |
 
-`contracts/operations.json` is the exact name/input schema inventory: 36 owner operations plus five public reads. [Implementation design](KB_CareerAtlas_Implementation_P0.md) explains the operation families and storage. This concrete mapping supersedes the earlier suggested resource routes; it preserves their business semantics. Successful business responses use `{ "data": ... }`; list pagination returns items, total, page, and per_page.
+`contracts/operations.json` contains the P0 inventory: 36 owner operations plus five public reads. `contracts/operations.p1.json` adds 39 owner operations, for 80 operations in the combined HTTP/MCP catalog. [P0 design](KB_CareerAtlas_Implementation_P0.md) and [P1 design](KB_CareerAtlas_Implementation_P1.md) explain the operation families and storage. This mapping supersedes earlier suggested resource routes. Successful business responses use `{ "data": ... }`; paginated P0 lists return items, total, page, and per_page. P1 workspace lists return the latest 100 owned records; they are not an unlimited history search.
+
+P1 operations cover capture drafts/duplicate review/application, experience revision history, preparation and immutable answer versions, practice lifecycle, independent opportunity preview/publication/revocation/export, and owner AI status/start/read/cancel/apply. Provider requests run outside the owner transaction; applying a completed proposal rechecks sources inside that transaction and never confirms or publishes it.
 
 ## Mutations and errors
 

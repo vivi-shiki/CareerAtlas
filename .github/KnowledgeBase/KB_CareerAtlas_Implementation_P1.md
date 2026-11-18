@@ -29,3 +29,15 @@ Language is a content setting for generated drafts, distinct from the UI languag
 Reuse the existing workspace sidebar, heading, form, list, dialog, evidence, preview, and public reading components. Add Capture, Preparation, and Opportunities routes; history is reached from an experience. Display source freshness and explicit review/apply actions near generated output. Keep manual editing and publication usable without a provider.
 
 Test forbidden/foreign IDs, stale writes, immutable revisions, duplicate application, source changes during generation, discarded practice, independent opportunity pages, export allowlists, prompt injection, missing evidence, and language preservation. Browser acceptance includes full manual and AI-assisted workflows, disabled/failed/cancelled AI, keyboard/source dialogs, and the existing three-language/four-width checks. Fictional live evaluation is separate from deterministic provider tests.
+
+## Executable implementation
+
+The P1 catalog adds 39 authenticated operations to the existing 41-operation catalog. All 80 are discoverable through MCP and share HTTP dispatcher validation. The owner AI lifecycle is `owner_ai_status`, `start_owner_ai`, `get_owner_ai`, `cancel_owner_ai`, and `apply_owner_ai`; the [API inventory](KB_CareerAtlas_API.md) documents operation families and list limits. The [owner Agent contract](KB_CareerAtlas_Design_OwnerAgent.md) specifies queue bounds, tools and review behavior.
+
+Additive migrations create `capture_drafts`, `experience_revisions`, `preparations`, `prepared_answers`, `answer_versions`, `practice_sessions`, `opportunities`, and `owner_ai_runs`, and extend publication snapshots with reviewed introduction references. A separate migration stores the applied AI result for idempotent replay. Historical answer details preserve the original source snapshots rather than substituting current source text.
+
+The owner routes are `/capture`, `/preparation`, and `/opportunities`, with individual records addressed by ID. Existing experience screens expose revision history. Opportunity preview and public reading share the same renderer; explicit experience order is retained even when records from one project are interleaved with another. Interface labels follow the selected UI language, while generated content follows the independently selected target language.
+
+Practice expires after 24 hours unless explicitly retained. Daily `practice:prune` removes expired unretained practice; `owner-ai:prune` removes proposal runs older than one day. Applying feedback alone does not retain a practice session. Applying any AI proposal never confirms an experience/answer/introduction or publishes a page. Source changes require refresh and a new review before subsequent confirmation or publication.
+
+Limits: P1 lists show the latest 100 owned records. Requirement URLs are stored as metadata, not fetched. Practice is text only; answer length is approximate. Export is Markdown, with optional reviewed translation, and previously downloaded files cannot be revoked. Deployment, audio practice and P2 collaboration remain outside this implementation.

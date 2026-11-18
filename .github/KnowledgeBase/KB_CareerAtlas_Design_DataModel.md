@@ -1,6 +1,6 @@
 # CareerAtlas Data Model and Versioning
 
-Status: logical model across P0–P2. The P0 non-AI entities now have executable PostgreSQL migrations; see the [physical schema and operation design](KB_CareerAtlas_Implementation_P0.md). Agent sessions/runs and P1/P2 entities remain planned.
+Status: logical model across P0-P2. P0, public Agent sessions/runs and P1 entities have executable PostgreSQL migrations; see the [P0 physical schema](KB_CareerAtlas_Implementation_P0.md) and [P1 implementation contract](KB_CareerAtlas_Implementation_P1.md). P2 entities remain planned.
 
 ## Entities
 

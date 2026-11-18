@@ -1,6 +1,6 @@
 # P1 Interface Acceptance Plan
 
-Status: static review complete; behavior cases specified before API integration.
+Status: static review and integrated manual/AI workflow review complete. Behavior cases were specified before API integration; final executable results are recorded in the [ten-gate ledger](2026-11-18-p1-implementation.md).
 
 ## Static comparison ledger
 
@@ -29,3 +29,11 @@ Reference: accepted [experience editor](../../design/2026-11-17/mockups/01-exper
 | Responsive languages | English, Chinese and Japanese at 1440/768/390/320; no overflow, clipped controls, missing focus or console exceptions |
 
 AI drafting, citations, follow-up limits, cancellation and provider-failure fallback belong to the separate Agent gates. Passing manual workflows does not imply AI acceptance.
+
+## Integrated review
+
+Manual capture, preparation and opportunity screens were rendered in all three UI languages at 1440, 768, 390 and 320 pixels: 36 screenshots with no horizontal overflow or browser exceptions. The date-range toggle was corrected to a 44-pixel target. The real-provider capture flow was then inspected in English desktop and Chinese/Japanese mobile views, both before and after explicit private-draft application. Sources remain quoted in their original language; generated prose follows the target language.
+
+Review found raw date JSON and record-type codes in the proposal display. These now use localized dates, translated labels and readable skill lists, with field spacing and wrapping. Deterministic narrow-screen checks cover all three languages. Public preview review also found that grouping by project could reorder interleaved experiences; the shared renderer now preserves selected experience order, with a browser regression covering both preview and public reading. Answer history exposes the saved source snapshots alongside the historical answer.
+
+AI browser coverage includes manual fallback, failure input retention, cancellation, source changes, explicit source adoption, private draft application, retained feedback, unconfirmed introductions, reviewed export and citation display. Controlled model responses test orchestration; the separate real-provider evaluation tests actual generated content. Neither replaces the other.

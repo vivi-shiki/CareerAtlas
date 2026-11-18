@@ -8,7 +8,15 @@ CareerAtlas is a standalone product for individuals and organizations. It helps 
 
 ## Project status
 
-The P0 application now includes the owner workspace, public portfolio, developer MCP tools and a bounded, source-cited public assistant. Local acceptance is recorded in the [ten-gate implementation ledger](.github/TaskLogs/2026-11-18-p0-implementation.md). P1/P2 features remain planned; no cloud deployment is claimed.
+P0 provides the owner workspace, public portfolio, developer MCP tools and a bounded, source-cited public assistant. P1 adds private capture, preparation/practice and independent opportunity pages with reviewed AI assistance. Local acceptance is recorded in the [P0 ledger](.github/TaskLogs/2026-11-18-p0-implementation.md) and [P1 ledger](.github/TaskLogs/2026-11-18-p1-implementation.md). P2 organization features remain planned; no cloud deployment is claimed.
+
+## P1 workflows
+
+- **Capture:** save notes in a project, review an AI draft and optional follow-up questions, inspect possible duplicates, then add or merge a private experience. Confirm it separately. Experience history shows revisions and differences.
+- **Preparation:** select confirmed sources, record requirements, choose a target language and short/standard answer length, review source-based suggestions, and keep answer versions. Written practice supports one question at a time, retry, stop, optional feedback and explicit retention.
+- **Opportunities:** maintain a private brief, choose and order public fields, review an introduction, and publish an independent page. Revoke or update one page without changing another. Export the authorized snapshot as Markdown; review translated fields before downloading.
+
+AI never confirms or publishes a draft. Missing facts remain gaps; changed sources invalidate pending proposals. Owner drafting requires its own explicit environment allowlist. Manual editing remains available when AI is disabled, unavailable or cancelled. Unsaved practice and proposal runs expire after one day; explicitly kept practice and applied drafts remain. Downloaded exports cannot be recalled after a later revocation.
 
 ## Technology direction
 
@@ -31,7 +39,7 @@ Git-tracked root documents, `.github/`, and `design/` form the shared documentat
 
 Use the language selector on the sign-in page, in the workspace, or on a public portfolio to switch between English, Simplified Chinese, and Japanese. The interface follows a saved browser preference first, then the browser language, with English as the fallback. Switching preserves unsaved form input and conversation history. Profile language is separate from interface language.
 
-Navigation, forms, confirmation dialogs, validation and recovery messages, assistant controls, accessibility labels, dates, and counts are localized. User-authored records, source quotations, and previous AI answers remain in their original language. New AI answers follow the question's language; translated question suggestions provide a starting point. Translation does not grant additional access or change publication snapshots.
+Navigation, forms, confirmation dialogs, validation and recovery messages, assistant controls, accessibility labels, dates, and counts are localized. User-authored records, source quotations, and previous AI answers remain in their original language. Public Q&A follows the question's language; owner drafts and exports use the selected content language. Translation does not grant additional access or change publication snapshots.
 
 The three READMEs cover the same product overview. Engineering documentation remains in English. See the [localization contract](.github/KnowledgeBase/KB_CareerAtlas_Localization.md) for catalogs, API behavior, maintenance, and verification.
 
