@@ -129,6 +129,42 @@ for (const language of languages) {
     })
 }
 
+test('language switching preserves a chapter while its content is still loading', async ({
+    page,
+}) => {
+    await page.goto('/docs/en/index.html')
+    // Initialize the client before deliberately holding the next chapter's lazy bundle.
+    await page.locator('.VPNavBarSearch button').click()
+    await expect(page.locator('#localsearch-input')).toBeVisible()
+    await page.keyboard.press('Escape')
+    let release: () => void = () => {}
+    const gate = new Promise<void>((resolve) => {
+        release = resolve
+    })
+    let requested: () => void = () => {}
+    const pending = new Promise<void>((resolve) => {
+        requested = resolve
+    })
+    await page.route(/\/assets\/en_preparation\.md\..*\.js$/, async (route) => {
+        requested()
+        await gate
+        await route.continue()
+    })
+    try {
+        await page
+            .locator('.VPSidebar')
+            .getByRole('link', { name: 'Interview preparation', exact: true })
+            .click()
+        await pending
+        await expect(page).toHaveURL(/\/docs\/en\/preparation.html$/)
+        await page.locator('.docs-language').selectOption('ja')
+        await expect(page).toHaveURL(/\/docs\/ja\/preparation.html$/)
+        await expect(page.locator('.vp-doc h1')).toHaveText('面接準備')
+    } finally {
+        release()
+    }
+})
+
 test('every static guide, screenshot and local asset resolves without signing in', async ({
     request,
 }) => {

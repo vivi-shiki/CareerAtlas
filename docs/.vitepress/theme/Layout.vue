@@ -2,12 +2,13 @@
 import DefaultTheme from 'vitepress/theme'
 import { useData, useRouter } from 'vitepress'
 import { computed, onMounted, watch } from 'vue'
-const { lang, page, theme } = useData()
+const { lang, theme } = useData()
 const router = useRouter()
 function changeLanguage(event: Event) {
     const locale = (event.target as HTMLSelectElement).value
+    // The URL changes before a lazy chapter finishes loading on a slow connection.
     const chapter =
-        page.value.relativePath.split('/').slice(1).join('/').replace(/\.md$/, '.html') ||
+        window.location.pathname.match(/^\/docs\/(?:en|zh-CN|ja)\/([^/]+\.html)$/)?.[1] ||
         'index.html'
     router.go(`/docs/${locale}/${chapter}`)
 }

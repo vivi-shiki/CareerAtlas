@@ -27,10 +27,12 @@ The initial browser check caught malformed corresponding-language links caused b
 - `npm run test:i18n`: three catalogs, 600 messages each, parameter parity and template coverage passed.
 - `npm run test:docs`: 39 localized chapters, 39 requirement IDs, 45 image references and 210 local links passed. There are 42 distinct localized screenshots.
 - PowerShell documentation validator: engineering/root links, requirement IDs, English baseline, and public/local boundary passed.
-- Playwright homepage and documentation suites: 23 passed. Page identity, nonblank content, absence of framework overlays, console health, loaded images, search, corresponding-language navigation, return-home language persistence, and responsive navigation passed. All rendered documentation links/assets were fetched anonymously.
+- Playwright homepage and documentation suites: 16 homepage cases and 8 documentation cases passed. Page identity, nonblank content, absence of framework overlays, console health, loaded images, search, corresponding-language navigation, return-home language persistence, and responsive navigation passed. All rendered documentation links/assets were fetched anonymously.
 - Opt-in screenshot capture: three locale workflows passed, including real owner operations and queued fake-provider draft/Q&A execution. Final desktop and mobile documentation images and representative product screenshots were visually inspected. A transient sidebar-closing frame in the first mobile QA capture was resolved by waiting for the closed state and disabling screenshot animations.
 
 Automated model fixtures illustrate UI workflows only; they do not establish live model quality. No backend/domain behavior changed. The existing CI performs its full backend/release checks before production publication. Deployment identifiers and live operational evidence belong in the ignored runbook.
+
+The first live interaction pass exposed a slow-network race: VitePress changes the address before the lazy chapter data arrives. Reading the previous page's metadata during an immediate language switch could navigate to the translated overview. The selector now derives the chapter from the current URL. A regression case holds the incoming chapter bundle and switches language before it completes; the intended chapter is preserved. The final eight-case documentation suite passed after this correction.
 
 ## Status
 
