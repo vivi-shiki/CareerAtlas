@@ -1,6 +1,6 @@
 # Reproducible releases and continuous delivery
 
-Status: implementation under verification. Environment provisioning and live outcomes are recorded only in the ignored local runbook.
+Status: implemented and verified through a successful automated release, browser/API smoke checks, post-switch failure recovery and an isolated database restore. Environment identifiers and detailed operational outcomes are recorded only in the ignored local runbook.
 
 ## Pipeline
 

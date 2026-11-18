@@ -21,4 +21,4 @@ Do not add tests that merely restate low-impact text edits. Run required and ris
 
 After infrastructure and release tooling exist, run the P0 workflow in the deployed environment. Verify authentication, persistent PostgreSQL data, public field filtering, citation access, and revocation through any delivery/cache layer. Exercise provider failure and the documented recovery procedure. Record the environment identity and detailed outcomes in ignored local logs. Record reusable checks, artifact revision, and sanitized product-level findings in shared logs.
 
-Deployment smoke checks supplement application and authorization tests. No application release has been tested yet. Follow [Deployment](../KnowledgeBase/KB_CareerAtlas_Design_Deployment.md) for shared release requirements and the local companion for environment constraints.
+Deployment smoke checks supplement application and authorization tests. See the [release verification ledger](../TaskLogs/2026-11-18-release-tooling.md) for measured outcomes. Follow [Deployment](../KnowledgeBase/KB_CareerAtlas_Design_Deployment.md) for shared release requirements and the local companion for environment constraints.
