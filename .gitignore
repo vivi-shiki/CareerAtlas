@@ -28,3 +28,4 @@
 /.phpunit.result.cache
 /playwright-report/
 /test-results/
+/deploy/__pycache__/

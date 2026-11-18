@@ -51,6 +51,8 @@ Define portable runtime, persistence, configuration, release, and recovery requi
 
 [Design Explanation](KB_CareerAtlas_Design_Deployment.md)
 
+- [Continuous delivery, runtime configuration, release and recovery tooling](KB_CareerAtlas_Release.md)
+
 #### Data and Versioning
 
 Separate work-in-progress records, owner confirmation, publication snapshots, and third-party confirmations.

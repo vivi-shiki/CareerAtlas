@@ -1,6 +1,6 @@
 # CareerAtlas Deployment Contract
 
-Status: shared design requirements. Application deployment tooling is not implemented. Actual environment selections and observations belong in ignored local documentation.
+Status: shared deployment requirements. Parameterized host/release scripts and a continuous-delivery workflow are implemented; see [Release tooling](KB_CareerAtlas_Release.md) for behavior and verification status. Actual environment selections and observations belong in ignored local documentation.
 
 ## Application requirements
 
@@ -17,7 +17,7 @@ These contracts do not prescribe a cloud subscription, hosting service, API subs
 
 ## Configuration boundary
 
-Public documentation specifies configuration purpose, validation, defaults where safe, and required versus optional values. Sanitized examples use placeholders. Exact variable names become authoritative when implementation defines them; no runtime configuration schema exists yet.
+Public documentation specifies configuration purpose, validation, defaults where safe, and required versus optional values. Sanitized examples use placeholders. The application config files and `.env.example` define runtime variables; `php artisan deploy:check` verifies the production subset without printing values.
 
 Keep actual provider/service choices, model settings, project/resource identifiers, domains, regions, CLI profiles, quotas, costs, credential locations, and environment-specific commands in `.local/docs/`. Keep secret values in the credential mechanism, never in documentation.
 
@@ -39,6 +39,6 @@ A release must not reset career records or publication state. A cache or deliver
 
 ## Open implementation decisions
 
-Select compatible runtime versions, frontend integration, artifact packaging, migration/recovery tooling, and measurable backup/recovery objectives during implementation. Record portable commands only after verification. The local companion records service-specific choices and does not establish a new product requirement by itself.
+The release implementation defines runtime versions, frontend integration, artifact packaging and migration/recovery mechanisms. Each installation must still establish measurable backup/recovery objectives and record actual restore evidence. The local companion records service-specific choices and does not establish a new product requirement by itself.
 
 Related: [Architecture](KB_CareerAtlas_Design_Architecture.md), [Building](../Guidelines/Building.md), [Testing](../Guidelines/Testing.md), [Documentation ownership](../Guidelines/Documentation.md).

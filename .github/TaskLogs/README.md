@@ -4,6 +4,7 @@ These files follow GacUI's stage markers and record reusable CareerAtlas develop
 
 | File | Purpose |
 | --- | --- |
+| [2026-11-18-release-tooling.md](2026-11-18-release-tooling.md) | Reproducible artifacts, production checks and automatic delivery verification |
 | [2026-11-18-p1-implementation.md](2026-11-18-p1-implementation.md) | P1 ten-gate implementation and acceptance ledger |
 | [2026-11-18-p1-ui-acceptance.md](2026-11-18-p1-ui-acceptance.md) | Static comparison and behavior cases specified before UI integration |
 | [2026-11-18-baseline-commits.md](2026-11-18-baseline-commits.md) | Explained P0 application, tests, and documentation commit sequence |
