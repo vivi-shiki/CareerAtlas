@@ -8,7 +8,7 @@ CareerAtlas supports English (`en`), Simplified Chinese (`zh-CN`), and Japanese 
 
 Language selection checks `careeratlas:locale` in localStorage, then supported browser languages, then English. Chinese regional variants map to Simplified Chinese; Traditional Chinese is not a separate translation. Disabled storage is tolerated. Selecting a language updates the document language, system page titles, navigation, forms, status and error messages, accessibility labels, dates, and counts. It does not remount the router view, mutate business fields, or discard unsaved input.
 
-The selector is available on authentication pages, desktop and mobile workspace navigation, public portfolios, and unavailable pages. Profile `preferred_language` remains a separate user-authored business field. A visitor's interface language does not rewrite the owner's profile preference.
+The selector is available on the product homepage, authentication pages, desktop and mobile workspace navigation, public portfolios, and unavailable pages. The homepage switches its illustrative product image and alternative text with the interface language, preserving the selected workflow tab. Its synthetic marketing examples are product-owned content; this does not translate private or published user records. Profile `preferred_language` remains a separate user-authored business field. A visitor's interface language does not rewrite the owner's profile preference.
 
 ## Content and assistant boundary
 

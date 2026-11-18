@@ -5,8 +5,9 @@ import { watchEffect } from 'vue'
 import ConfirmationDialog from '@/components/ConfirmationDialog.vue'
 const route = useRoute()
 watchEffect(() => {
-    const key = route.path.split('/')[1] || 'projects'
+    const key = route.path.split('/')[1] || 'home'
     const titles: Record<string, string> = {
+        home: 'Your experience, backed by evidence',
         login: 'Sign in',
         register: 'Create account',
         projects: 'Projects',

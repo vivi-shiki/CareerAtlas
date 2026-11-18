@@ -16,7 +16,7 @@ const owner = { owner: true }
 export const router = createRouter({
     history: createWebHistory(),
     routes: [
-        { path: '/', redirect: '/projects' },
+        { path: '/', component: () => import('@/pages/HomePage.vue') },
         { path: '/login', component: AuthPage },
         { path: '/register', component: AuthPage },
         { path: '/profile', component: ProfilePage, meta: owner },
@@ -44,7 +44,8 @@ export const router = createRouter({
         { path: '/design/:screen', component: () => import('@/pages/design/DesignApp.vue') },
         { path: '/:pathMatch(.*)*', component: UnavailablePage },
     ],
-    scrollBehavior: () => ({ top: 0 }),
+    scrollBehavior: (to, _from, savedPosition) =>
+        savedPosition || (to.hash ? { el: to.hash } : { top: 0 }),
 })
 router.beforeEach(async (to) => {
     if (to.meta.owner) {

@@ -1,0 +1,177 @@
+{
+  "id": "grace-hopper",
+  "version": 1,
+  "kind": "historical",
+  "reviewed_on": "2026-11-18",
+  "notice": "Historical study compiled from public sources. Not a resume authored or endorsed by Grace Hopper. Confirmation records curator review, not subject verification.",
+  "profile": {
+    "display_name": "Grace Hopper (historical case study)",
+    "direction": "Programming languages and software standardization",
+    "preferred_language": "en",
+    "biography": "Historical demonstration, not an account operated by Grace Hopper. Grace Hopper (1906–1992) studied mathematics and physics at Vassar and earned mathematics degrees at Yale. Her career included teaching, naval service and the computer industry. This selective study covers three milestones; it is not a complete biography. Dates use year precision. Skill labels are curator classifications. Confirmed means reviewed by the case curator, not verified by the subject.",
+    "contact_links": [
+      {
+        "label": "Source: Yale biography",
+        "url": "https://president.yale.edu/biography-grace-murray-hopper"
+      },
+      {
+        "label": "Source: Computer History Museum",
+        "url": "https://computerhistory.org/profile/grace-murray-hopper/"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "yale",
+      "title": "Biography of Grace Murray Hopper",
+      "publisher": "Yale University",
+      "url": "https://president.yale.edu/biography-grace-murray-hopper",
+      "accessed_on": "2026-11-18"
+    },
+    {
+      "id": "chm",
+      "title": "Grace Murray Hopper",
+      "publisher": "Computer History Museum",
+      "url": "https://computerhistory.org/profile/grace-murray-hopper/",
+      "accessed_on": "2026-11-18"
+    }
+  ],
+  "projects": [
+    {
+      "key": "a0",
+      "project": {
+        "title": "A-0: automatic programming",
+        "type": "learning",
+        "role": "Historical subject: compiler developer",
+        "background": "Historical study of work on automatic programming. The learning category describes this curated study, not Hopper's employment status.",
+        "occurrence": {
+          "start": "1952",
+          "precision": "year"
+        }
+      },
+      "experiences": [
+        {
+          "key": "a0-development",
+          "record": {
+            "title": "Developing A-0",
+            "record_type": "work_contribution",
+            "occurrence": {
+              "start": "1952",
+              "precision": "year"
+            },
+            "personal_action": "Hopper developed A-0 in 1952.",
+            "result": "An early step toward automatic programming.",
+            "validation": "Yale's programming-pioneer section identifies the system and year; CHM describes her early compiler work. Curator review only.",
+            "remaining_work": "The selected sources do not establish a benchmark, staffing count or detailed test procedure."
+          },
+          "skills": [
+            "Compiler development",
+            "Automatic programming"
+          ],
+          "source_ids": [
+            "yale",
+            "chm"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "flowmatic",
+      "project": {
+        "title": "FLOW-MATIC: word-based programming",
+        "type": "learning",
+        "role": "Historical subject: programming-language pioneer",
+        "background": "Historical study of making programming accessible through word-based commands.",
+        "team_outcome": "Her team had FLOW-MATIC running in 1956.",
+        "occurrence": {
+          "start": "1956",
+          "precision": "year"
+        }
+      },
+      "experiences": [
+        {
+          "key": "flowmatic-development",
+          "record": {
+            "title": "Pursuing an English-word programming language",
+            "record_type": "work_contribution",
+            "occurrence": {
+              "start": "1956",
+              "precision": "year"
+            },
+            "personal_action": "Hopper pursued programming expressed in words; FLOW-MATIC was a team effort.",
+            "result": "The language addressed data-processing work.",
+            "validation": "Yale's biography supports the team milestone. Curator review only.",
+            "remaining_work": "No claim is made that Hopper wrote every component alone."
+          },
+          "skills": [
+            "Programming language design",
+            "Data processing"
+          ],
+          "source_ids": [
+            "yale"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "cobol",
+      "project": {
+        "title": "COBOL: collaborative language development",
+        "type": "learning",
+        "role": "Historical subject: contributor and advocate",
+        "background": "Historical study of cooperation around a common business programming language.",
+        "team_outcome": "COBOL emerged from contributions by multiple people.",
+        "occurrence": {
+          "start": "1959",
+          "precision": "year"
+        }
+      },
+      "experiences": [
+        {
+          "key": "cobol-collaboration",
+          "record": {
+            "title": "Contributing to a shared business language",
+            "record_type": "work_contribution",
+            "occurrence": {
+              "start": "1959",
+              "precision": "year"
+            },
+            "personal_action": "Hopper participated in CODASYL in 1959 and supported COBOL's development and adoption.",
+            "validation": "Yale and CHM describe her contribution. Curator review only.",
+            "remaining_work": "These sources do not support sole authorship or modern cloud-platform experience."
+          },
+          "skills": [
+            "Programming language design",
+            "Software standardization"
+          ],
+          "source_ids": [
+            "yale",
+            "chm"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded_topics": [
+    "Awards are intentionally not imported; model memory is not an authorized portfolio source.",
+    "No private-life details, personal contact details, portrait, modern technology claims or invented performance metrics."
+  ],
+  "questions": [
+    {
+      "question": "What did Hopper contribute to A-0, and what source supports the date?",
+      "expected": "Cite the A-0 record and linked source; preserve year precision."
+    },
+    {
+      "question": "Did Hopper create COBOL alone?",
+      "expected": "Explain collaboration; do not claim sole authorship."
+    },
+    {
+      "question": "Which awards did she receive?",
+      "expected": "The imported portfolio contains no award record; acknowledge this evidence gap."
+    },
+    {
+      "question": "Do these records prove AWS production experience?",
+      "expected": "No supporting record; do not equate historical computing with AWS experience."
+    }
+  ]
+}

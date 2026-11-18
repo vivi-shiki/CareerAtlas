@@ -37,7 +37,9 @@ Git-tracked root documents, `.github/`, and `design/` form the shared documentat
 
 ## Languages
 
-Use the language selector on the sign-in page, in the workspace, or on a public portfolio to switch between English, Simplified Chinese, and Japanese. The interface follows a saved browser preference first, then the browser language, with English as the fallback. Switching preserves unsaved form input and conversation history. Profile language is separate from interface language.
+Use the language selector on the product homepage, sign-in page, workspace, or public portfolio to switch between English, Simplified Chinese, and Japanese. The interface follows a saved browser preference first, then the browser language, with English as the fallback. Switching preserves unsaved form input and conversation history. Profile language is separate from interface language.
+
+The public homepage at `/` introduces the existing workflows with three localized product previews. Text and illustrative images switch together; sign-in opens only through an explicit link to `/login`. Private workspace routes still require authentication. See the [homepage design and behavior](design/2026-11-18-homepage/README.md).
 
 Navigation, forms, confirmation dialogs, validation and recovery messages, assistant controls, accessibility labels, dates, and counts are localized. User-authored records, source quotations, and previous AI answers remain in their original language. Public Q&A follows the question's language; owner drafts and exports use the selected content language. Translation does not grant additional access or change publication snapshots.
 
@@ -63,6 +65,10 @@ The UI/UX suite defines the private contribution editor, explicit publication pr
 - [Page states and interaction requirements](.github/KnowledgeBase/KB_CareerAtlas_Design_UserExperience.md)
 
 The static `design/2026-11-17/index.html` gallery can be opened after cloning. The Markdown design pack is the GitHub-readable entry point; publishing these files does not deploy a website.
+
+## Case library
+
+[Case library and import guide](examples/case-library/README.md): a sourced Grace Hopper study and a fictional Alex Morgan engineering portfolio. The importer writes normal database records; the shared `/p/{slug}` page reads published database snapshots. Source JSON is import material, not a hardcoded page. Private personal imports stay outside Git. A local import is not an Internet deployment.
 
 ## Documentation workflow
 
