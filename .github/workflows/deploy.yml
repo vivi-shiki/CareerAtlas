@@ -55,7 +55,7 @@ jobs:
           php artisan test --compact
           vendor/bin/pint --test
       - run: npm ci
-      - run: npm run build && npm run test:i18n
+      - run: npm run build && npm run test:i18n && npm run test:docs
       - run: pwsh -NoProfile -File .github/Scripts/Validate-Documentation.ps1
       - run: |
           for script in deploy/*.sh; do bash -n "$script"; done

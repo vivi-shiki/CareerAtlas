@@ -8,6 +8,7 @@ Start with [Project.md](../../Project.md). CareerAtlas connects experience, proj
 - [All five scenarios and 39 functional requirements](KB_CareerAtlas_FunctionalRequirements.md)
 - [Acceptance criteria and verification](KB_CareerAtlas_Testing.md)
 - [Sources and GacUI adaptation](Sources.md)
+- [Reader documentation](../../docs/en/index.md) with matching Chinese/Japanese guides, fictional screenshots, local development, and complete feature coverage
 
 - [P0 implementation design, schema, atomic operations, and coverage review](KB_CareerAtlas_Implementation_P0.md)
 - [P0 frontend visual system and browser behavior coverage](KB_CareerAtlas_Frontend_P0.md)

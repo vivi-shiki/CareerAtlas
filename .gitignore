@@ -17,6 +17,8 @@
 /vendor/
 /node_modules/
 /public/build/
+/public/docs/
+/docs/.vitepress/cache/
 /public/hot
 /storage/*.key
 /storage/logs/*

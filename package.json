@@ -9,9 +9,14 @@
     "test:i18n": "node scripts/check-i18n.mjs",
     "test:mcp": "node scripts/mcp-acceptance.mjs",
     "dev": "vite --host 127.0.0.1",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "npm run build:app && npm run docs:build",
     "typecheck": "vue-tsc --noEmit",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "build:app": "vue-tsc --noEmit && vite build",
+    "docs:dev": "vitepress dev docs --host 127.0.0.1",
+    "docs:build": "vitepress build docs && node scripts/finalize-docs.mjs",
+    "docs:preview": "vitepress preview docs --host 127.0.0.1",
+    "test:docs": "node scripts/check-docs.mjs"
   },
   "devDependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",
@@ -24,6 +29,7 @@
     "tailwindcss": "^4.3.5",
     "typescript": "^6.0.3",
     "vite": "^8.3.8",
+    "vitepress": "1.6.4",
     "vue-tsc": "^3.3.14"
   },
   "dependencies": {

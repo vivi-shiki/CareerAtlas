@@ -81,7 +81,7 @@ function moveTab(event: KeyboardEvent, index: number) {
                 <nav class="home-nav" :aria-label="t('Product navigation')">
                     <a href="#product">{{ t('Product') }}</a>
                     <a href="#use-cases">{{ t('Use cases') }}</a>
-                    <a href="#your-data">{{ t('Your data') }}</a>
+                    <a :href="`/docs/${locale}/index.html`">{{ t('Documentation') }}</a>
                 </nav>
                 <div class="home-header-actions">
                     <LanguageSelector /><RouterLink

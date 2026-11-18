@@ -4,7 +4,7 @@
 
 Use English prose, titles, examples, prompts, logs, and comments. Product content may be multilingual; the working-language rule does not require translating users' career records. Keep filenames and links consistent with the GacUI-style structure.
 
-The root `README.zh-CN.md` and `README.ja.md` are explicitly requested reader-facing translations of `README.md`. Maintain equivalent sections and links in all three. The validator exempts only these two exact paths from its English character guard; other engineering documentation remains English.
+The root `README.zh-CN.md` and `README.ja.md` are explicitly requested reader-facing translations of `README.md`. The user also requested systematic trilingual reader documentation in `docs/en/`, `docs/zh-CN/`, and `docs/ja/`. Maintain equivalent chapters, feature coverage, and localized fictional screenshots. `npm run test:docs` checks chapter parity, requirement IDs, assets, links, and built-page language/CSP behavior. The engineering validator exempts the two translated READMEs from its English character guard; engineering documentation remains English. Reader guides in `docs/` are built and checked separately.
 
 Place durable contracts in `KnowledgeBase/KB_CareerAtlas_*.md`, design explanations in `KB_CareerAtlas_Design_*.md`, and navigation in [Index.md](../KnowledgeBase/Index.md). Use Guidelines for working procedures, prompts for task workflows, and TaskLogs for dated evidence. Link to a canonical requirement rather than duplicating it across files.
 
