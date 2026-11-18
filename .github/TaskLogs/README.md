@@ -4,6 +4,7 @@ These files follow GacUI's stage markers and record reusable CareerAtlas develop
 
 | File | Purpose |
 | --- | --- |
+| [2026-11-19-agent-documentation.md](2026-11-19-agent-documentation.md) | AI Agent prominence in trilingual READMEs, documentation, and tutorials |
 | [2026-11-19-reader-documentation.md](2026-11-19-reader-documentation.md) | Concise trilingual READMEs and searchable illustrated product documentation |
 | [2026-11-18-homepage.md](2026-11-18-homepage.md) | Public trilingual homepage, localized imagery and explicit sign-in entry |
 | [2026-11-18-release-tooling.md](2026-11-18-release-tooling.md) | Reproducible artifacts, production checks and automatic delivery verification |

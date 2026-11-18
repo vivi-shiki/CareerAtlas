@@ -171,6 +171,7 @@ test('every static guide, screenshot and local asset resolves without signing in
     const features = JSON.parse(readFileSync(resolve('docs/feature-map.json'), 'utf8'))
     const pages = [
         'index',
+        'ai-agent',
         'quickstart',
         'records',
         'capture',

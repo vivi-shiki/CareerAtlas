@@ -1,17 +1,25 @@
-# Your experience, with the evidence behind it
+# AI Agent for your career stories
 
-CareerAtlas connects projects, personal contributions, skills, and evidence. Use the same private record to prepare for interviews and publish a selected portfolio.
+CareerAtlas's **AI Agent** helps you turn notes into experience drafts, prepare source-based interview answers, and answer visitors' portfolio questions with citations. Projects, personal contributions, skills, and evidence provide the facts behind the conversation.
 
-**[Start in five steps](./quickstart.md)** · **[Run locally](./development.md)** · **[All features](./roadmap.md)**
+**[Start with the AI Agent](./ai-agent.md)** · **[First-time setup](./quickstart.md)** · **[Run locally](./development.md)**
 
-![A published fictional portfolio](../assets/screenshots/en/portfolio.jpg)
+## Two ways to use the Agent
 
-*Actual application screenshot. All names, records, projects, and evidence links in this guide are fictional demonstration data.*
+- **For you:** capture editable drafts, map requirements to evidence, prepare answers, review practice, and tailor introductions or translations.
+- **For visitors:** explore a published portfolio through Q&A and open citations to inspect the selected source context.
+
+**You choose the sources and review the result.** The Agent does not confirm or publish for you. AI availability depends on the operator; manual workflows remain available.
+
+![AI Agent answering with a source citation](../assets/screenshots/en/qa.jpg)
+
+*Actual application UI with fictional data. The pictured answer uses a deterministic test provider to demonstrate citations, not live model quality.*
 
 ## Choose your task
 
 | I want to… | Start here |
 | --- | --- |
+| Try the AI Agent from notes to cited Q&A | [AI Agent walkthrough](./ai-agent.md) |
 | Document what I did | [Projects, experience, skills, and evidence](./records.md) |
 | Turn scattered notes into a record | [Capture and revision history](./capture.md) |
 | Prepare and rehearse an interview answer | [Preparation and written practice](./preparation.md) |

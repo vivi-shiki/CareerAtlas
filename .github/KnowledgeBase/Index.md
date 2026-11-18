@@ -9,6 +9,7 @@ Start with [Project.md](../../Project.md). CareerAtlas connects experience, proj
 - [Acceptance criteria and verification](KB_CareerAtlas_Testing.md)
 - [Sources and GacUI adaptation](Sources.md)
 - [Reader documentation](../../docs/en/index.md) with matching Chinese/Japanese guides, fictional screenshots, local development, and complete feature coverage
+- [AI Agent walkthrough](../../docs/en/ai-agent.md) for owner assistance, cited public Q&A, and explicit review/application
 
 - [P0 implementation design, schema, atomic operations, and coverage review](KB_CareerAtlas_Implementation_P0.md)
 - [P0 frontend visual system and browser behavior coverage](KB_CareerAtlas_Frontend_P0.md)

@@ -1,6 +1,8 @@
-# Quick start
+# Quick start with AI Agent
 
-Follow this path to publish one evidence-backed contribution. No AI configuration is needed.
+Start with one project, use the **AI Agent** to organize a contribution, and publish a portfolio visitors can explore through cited Q&A. You review the facts at each step. AI is available when enabled by the operator; the same workflow can be completed manually.
+
+**[Open the illustrated AI Agent tutorial](./ai-agent.md).** Already have a public portfolio link? Open its question area, ask what the person contributed, and inspect the answer's source citations; visitors do not need to sign in.
 
 ## 1. Sign in and set up your profile
 
@@ -16,6 +18,8 @@ In **Projects**, add a title, project type, and your role. Add background, dates
 
 ## 3. Record your contribution
 
+For an AI-assisted first draft, open **Capture**, choose the project, save your notes, and select **Draft with AI**. Review and use the draft, then add it as an experience. [See the exact steps and screenshot](./ai-agent.md).
+
 Add an experience inside the project. Fill its title, record type, occurrence date, and **Personal action**. Add skills and labeled evidence links. Save a draft while details are incomplete; choose **Confirm experience** after reviewing the facts. Keep your own action separate from the team's overall outcome.
 
 ## 4. Preview selected fields
@@ -24,6 +28,6 @@ Open **Publish**. Select the confirmed experience and only the profile, project,
 
 ## 5. Publish and inspect
 
-Publish explicitly, open the public link, and check its content. Visitors can read the page without signing in. Q&A appears when enabled by the operator. Revoke the publication when it should no longer be accessible.
+Publish explicitly, open the public link, and check its content. When Q&A is enabled, ask the Agent “What did this person build?” and open a citation to inspect the source. Visitors can read and ask without signing in. Revoke the publication when it should no longer be accessible.
 
 Next: [prepare an interview answer](./preparation.md) or [tailor an opportunity page](./opportunities.md). For missing buttons or rejected saves, see [troubleshooting](./troubleshooting.md).

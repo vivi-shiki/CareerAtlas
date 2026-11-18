@@ -2,15 +2,21 @@
 
 [English](README.md) · [Chinese](README.zh-CN.md) · [Japanese](README.ja.md)
 
-**Record your work. Prepare with evidence. Share the right experience.**
+**Your AI Agent for evidence-backed career stories.**
 
-A personal career workspace connecting projects, contributions, skills, and evidence, with optional source-based AI assistance. English, Simplified Chinese, and Japanese are built in.
+CareerAtlas connects projects, contributions, skills, and evidence with an **AI Agent that helps you capture experience, prepare for interviews, and answer portfolio questions with sources**. English, Simplified Chinese, and Japanese are built in.
 
-[User guide](docs/en/index.md) · [Quick start](docs/en/quickstart.md) · [Development](docs/en/development.md) · [Feature coverage](docs/en/roadmap.md)
+[AI Agent walkthrough](docs/en/ai-agent.md) · [User guide](docs/en/index.md) · [Quick start](docs/en/quickstart.md) · [Development](docs/en/development.md)
 
-![CareerAtlas public portfolio with fictional demo data](docs/assets/screenshots/en/portfolio.jpg)
+## Meet your AI Agent
 
-*Actual application screenshot with fictional data. The deployed product links to the same three-language guide from its homepage.*
+- **Capture and prepare:** turn notes into editable experience drafts, map requirements to selected evidence, draft answers, and review written practice.
+- **Present and explain:** draft opportunity introductions, review export translations, and let visitors ask questions with clickable source citations.
+- **Stay in control:** the Agent works within selected sources; you review, confirm, and publish. Availability depends on operator configuration, with manual workflows available throughout.
+
+![AI Agent answering a portfolio question with a source citation](docs/assets/screenshots/en/qa.jpg)
+
+*Actual application UI with fictional data and a deterministic test-provider answer; this demonstrates the workflow, not live model quality. [Follow the AI Agent tutorial](docs/en/ai-agent.md).*
 
 ## What you can do
 
@@ -26,7 +32,7 @@ P0 and P1 are implemented. Organizations, named-recipient grants, and reviewer c
 
 1. Open the homepage, choose **Sign in**, and create an account if needed.
 2. Add a project and an experience; attach evidence and confirm the facts.
-3. Prepare an answer or choose public fields, review the preview, and publish.
+3. Follow the [AI Agent walkthrough](docs/en/ai-agent.md) to draft an answer or publish a portfolio and explore cited Q&A. Review and confirm drafts before sharing.
 
 See the [illustrated guide](docs/en/index.md) for every workflow, recovery step, and three-language screenshot.
 

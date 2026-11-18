@@ -6,6 +6,7 @@ const labels = {
         lang: 'en',
         label: 'English',
         title: 'Documentation',
+        agent: 'AI Agent walkthrough',
         guide: 'User guide',
         dev: 'Build & contribute',
         reference: 'Reference',
@@ -35,6 +36,7 @@ const labels = {
         lang: 'zh-CN',
         label: '简体中文',
         title: '使用文档',
+        agent: 'AI Agent 上手',
         guide: '使用指南',
         dev: '开发与贡献',
         reference: '参考',
@@ -64,6 +66,7 @@ const labels = {
         lang: 'ja',
         label: '日本語',
         title: 'ドキュメント',
+        agent: 'AI Agent 入門',
         guide: '使い方',
         dev: '開発・コントリビュート',
         reference: 'リファレンス',
@@ -111,6 +114,7 @@ const locales = Object.fromEntries(
             text: text.pages[index],
             link: `/${locale}/${pages[index]}.html`,
         })
+        const agent = { text: text.agent, link: `/${locale}/ai-agent.html` }
         return [
             locale,
             {
@@ -123,11 +127,19 @@ const locales = Object.fromEntries(
                     logoLink: `/docs/${locale}/index.html`,
                     i18nRouting: false,
                     nav: [
+                        agent,
                         { text: text.guide, link: `/${locale}/quickstart.html` },
                         { text: text.dev, link: `/${locale}/development.html` },
                     ],
                     sidebar: [
-                        { text: text.guide, items: pages.slice(0, 8).map((_, i) => item(i)) },
+                        {
+                            text: text.guide,
+                            items: [
+                                item(0),
+                                agent,
+                                ...pages.slice(1, 8).map((_, i) => item(i + 1)),
+                            ],
+                        },
                         { text: text.dev, items: [8, 9, 10].map(item) },
                         { text: text.reference, items: [11, 12].map(item) },
                     ],
