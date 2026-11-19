@@ -1,6 +1,6 @@
 # Architecture
 
-CareerAtlas is one Laravel application with a Vue workspace, a public portfolio, and a statically built documentation site.
+CareerAtlas uses PHP 8.3+ (**Laravel 13 backend framework**) in one application with a Vue workspace, a public portfolio, and a statically built documentation site.
 
 ```text
 Vue 3 / TypeScript UI      Authenticated MCP client
@@ -18,7 +18,7 @@ VitePress → public/docs → same-origin static documentation
 
 | Layer | Responsibility |
 | --- | --- |
-| Laravel 13 / PHP 8.3+ | Sessions, authorization, validation, transactions, version checks, publication projections |
+| PHP 8.3+ (Laravel 13 backend framework) | Sessions, authorization, validation, transactions, version checks, publication projections |
 | Vue 3 / TypeScript / Vite | Workspace forms, source previews, dialogs, visitor Q&A |
 | Vue I18n | English, Simplified Chinese, Japanese UI catalogs |
 | PostgreSQL | Owned career records, immutable versions, publication snapshots, queue state |

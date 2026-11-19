@@ -1,6 +1,6 @@
 # 技术架构
 
-CareerAtlas 是一个 Laravel 应用，包含 Vue 工作区、公开作品集与静态构建的文档站。
+CareerAtlas 使用 PHP 8.3+（**Laravel 13 后端框架**）构建单一应用，包含 Vue 工作区、公开作品集与静态构建的文档站。
 
 ```text
 Vue 3 / TypeScript 界面       已认证 MCP 客户端
@@ -18,7 +18,7 @@ VitePress → public/docs → 同域静态文档
 
 | 层级 | 职责 |
 | --- | --- |
-| Laravel 13 / PHP 8.3+ | 会话、权限、校验、事务、版本检查与公开内容投影 |
+| PHP 8.3+（Laravel 13 后端框架） | 会话、权限、校验、事务、版本检查与公开内容投影 |
 | Vue 3 / TypeScript / Vite | 工作区表单、来源预览、弹窗与访客问答 |
 | Vue I18n | 英语、简体中文、日语界面词典 |
 | PostgreSQL | 个人经历、不可变版本、发布快照与队列状态 |

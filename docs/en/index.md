@@ -2,6 +2,8 @@
 
 CareerAtlas's **AI Agent** helps you turn notes into experience drafts, prepare source-based interview answers, and answer visitors' portfolio questions with citations. Projects, personal contributions, skills, and evidence provide the facts behind the conversation.
 
+**Stack:** PHP 8.3+ (**Laravel 13 backend framework**) · Vue 3 · TypeScript · PostgreSQL.
+
 **[Start with the AI Agent](./ai-agent.md)** · **[First-time setup](./quickstart.md)** · **[Run locally](./development.md)**
 
 ## Two ways to use the Agent

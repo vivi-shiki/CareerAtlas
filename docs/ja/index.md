@@ -2,6 +2,8 @@
 
 CareerAtlas の **AI Agent** は、メモから経験の下書きを作り、情報源に基づく面接回答を準備し、訪問者の質問に引用付きで答えます。プロジェクト、個人の貢献、スキル、根拠が対話の事実の土台になります。
 
+**技術スタック：** PHP 8.3+（**バックエンドフレームワーク：Laravel 13**）· Vue 3 · TypeScript · PostgreSQL。
+
 **[AI Agent を使ってみる](./ai-agent.md)** · **[初回の設定](./quickstart.md)** · **[ローカルで動かす](./development.md)**
 
 ## Agent の二つの使い方

@@ -6,6 +6,8 @@
 
 CareerAtlas 将项目、个人贡献、技能与证据连接起来，**让 AI Agent 帮你整理经历、准备面试，并根据来源回答作品集问题**。内置英语、简体中文与日语。
 
+**技术栈：** PHP 8.3+（**Laravel 13 后端框架**）· Vue 3 · TypeScript · PostgreSQL。
+
 [AI Agent 上手](docs/zh-CN/ai-agent.md) · [使用指南](docs/zh-CN/index.md) · [快速上手](docs/zh-CN/quickstart.md) · [开发指南](docs/zh-CN/development.md)
 
 ## 认识你的 AI Agent
@@ -41,7 +43,7 @@ P0 与 P1 已实现。组织、指定接收人授权和他人确认仍在规划�
 | 层级 | 技术与用途 |
 | --- | --- |
 | 界面 | Vue 3、TypeScript、Vite、Vue I18n |
-| 应用 | Laravel 13 / PHP 8.3+，共用 HTTP/MCP 操作与服务端权限 |
+| 应用 | PHP 8.3+（Laravel 13 后端框架），共用 HTTP/MCP 操作与服务端权限 |
 | 数据与 AI | PostgreSQL、版本化发布快照、数据库队列、有边界的模型适配器 |
 | 文档 | VitePress，静态页面与本地搜索，随应用部署 |
 

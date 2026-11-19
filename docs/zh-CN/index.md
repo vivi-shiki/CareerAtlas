@@ -2,6 +2,8 @@
 
 CareerAtlas 的 **AI Agent** 帮你将笔记整理为经历草稿，准备有来源支持的面试回答，并通过带引用的问答向访客介绍作品集。项目、个人贡献、技能与证据共同构成对话的事实基础。
 
+**技术栈：** PHP 8.3+（**Laravel 13 后端框架**）· Vue 3 · TypeScript · PostgreSQL。
+
 **[开始使用 AI Agent](./ai-agent.md)** · **[首次使用设置](./quickstart.md)** · **[本地运行](./development.md)**
 
 ## 两条 Agent 使用主线

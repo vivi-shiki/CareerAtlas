@@ -16,7 +16,7 @@ As of 2026-11-18, the P0 Laravel/PostgreSQL backend, Vue owner/public interfaces
 
 | Layer | Choice | Responsibility |
 | --- | --- | --- |
-| Backend | PHP / Laravel | Identity, Policies, validation, transactions, publications, agent tools |
+| Backend | PHP 8.3+ (Laravel 13 backend framework) | Identity, Policies, validation, transactions, publications, agent tools |
 | Frontend | Vue 3 / TypeScript | Owner workspace, public portfolio, forms, citations, chat |
 | Localization | Vue I18n / shared JSON catalogs | English, Simplified Chinese, Japanese UI and system messages |
 | Database | PostgreSQL | Structured records, versioned publications, permission-aware queries |

@@ -6,6 +6,8 @@
 
 CareerAtlas connects projects, contributions, skills, and evidence with an **AI Agent that helps you capture experience, prepare for interviews, and answer portfolio questions with sources**. English, Simplified Chinese, and Japanese are built in.
 
+**Stack:** PHP 8.3+ (**Laravel 13 backend framework**) · Vue 3 · TypeScript · PostgreSQL.
+
 [AI Agent walkthrough](docs/en/ai-agent.md) · [User guide](docs/en/index.md) · [Quick start](docs/en/quickstart.md) · [Development](docs/en/development.md)
 
 ## Meet your AI Agent
@@ -41,7 +43,7 @@ See the [illustrated guide](docs/en/index.md) for every workflow, recovery step,
 | Layer | Stack and purpose |
 | --- | --- |
 | Interface | Vue 3, TypeScript, Vite, Vue I18n |
-| Application | Laravel 13 / PHP 8.3+, shared HTTP/MCP operations and server-side authorization |
+| Application | PHP 8.3+ (Laravel 13 backend framework), shared HTTP/MCP operations and server-side authorization |
 | Data and AI | PostgreSQL, versioned publication snapshots, database queue, bounded model adapter |
 | Documentation | VitePress, static pages and local search, shipped with the application |
 

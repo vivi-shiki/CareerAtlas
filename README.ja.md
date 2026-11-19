@@ -6,6 +6,8 @@
 
 CareerAtlas はプロジェクト、個人の貢献、スキル、根拠を結び付け、**AI Agent が経験の整理、面接準備、出典付きのポートフォリオ Q&A を支援**します。英語・簡体字中国語・日本語に対応しています。
 
+**技術スタック：** PHP 8.3+（**バックエンドフレームワーク：Laravel 13**）· Vue 3 · TypeScript · PostgreSQL。
+
 [AI Agent 入門](docs/ja/ai-agent.md) · [利用ガイド](docs/ja/index.md) · [クイックスタート](docs/ja/quickstart.md) · [開発ガイド](docs/ja/development.md)
 
 ## AI Agent でできること
@@ -41,7 +43,7 @@ P0 と P1 は実装済みです。組織、指定相手へのアクセス許可�
 | 層 | 技術と役割 |
 | --- | --- |
 | 画面 | Vue 3、TypeScript、Vite、Vue I18n |
-| アプリ | Laravel 13 / PHP 8.3+、共通 HTTP/MCP 操作、サーバー側の認可 |
+| アプリ | PHP 8.3+（バックエンドフレームワーク：Laravel 13）、共通 HTTP/MCP 操作、サーバー側の認可 |
 | データ・AI | PostgreSQL、バージョン付き公開スナップショット、DB キュー、制限付きモデルアダプター |
 | 文書 | VitePress、静的ページとローカル検索、アプリと一緒に配布 |
 
