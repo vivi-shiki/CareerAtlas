@@ -2,6 +2,10 @@
 
 [English](README.md) · [Chinese](README.zh-CN.md) · [Japanese](README.ja.md)
 
+**クイックリンク：** [オンラインドキュメント](https://dax9s3s2t9odi.cloudfront.net/docs/ja/index.html) · [デモのホーム](https://dax9s3s2t9odi.cloudfront.net)
+
+**サンプルポートフォリオ（架空の人物）：** [Nora Bennett · 英語](https://dax9s3s2t9odi.cloudfront.net/p/atlas-eity2sboy0uvrdlhk1gz) · [Evan Reed · 英語](https://dax9s3s2t9odi.cloudfront.net/p/atlas-6tvhkjjvsaiyzcccb878) · [高橋悠人 · 日本語](https://dax9s3s2t9odi.cloudfront.net/p/atlas-dwpjxdazdkl2tssgnriq) · [森川彩 · 日本語](https://dax9s3s2t9odi.cloudfront.net/p/atlas-mafajpuvf0vpcsy2thtg)
+
 **AI Agent と経験を整理し、面接に備え、根拠のあるストーリーを伝える。**
 
 CareerAtlas はプロジェクト、個人の貢献、スキル、根拠を結び付け、**AI Agent が経験の整理、面接準備、出典付きのポートフォリオ Q&A を支援**します。英語・簡体字中国語・日本語に対応しています。

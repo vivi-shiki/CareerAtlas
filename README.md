@@ -2,6 +2,10 @@
 
 [English](README.md) · [Chinese](README.zh-CN.md) · [Japanese](README.ja.md)
 
+**Quick links:** [Online documentation](https://dax9s3s2t9odi.cloudfront.net/docs/en/index.html) · [Live application](https://dax9s3s2t9odi.cloudfront.net)
+
+**Example portfolios (fictional):** [Nora Bennett · EN](https://dax9s3s2t9odi.cloudfront.net/p/atlas-eity2sboy0uvrdlhk1gz) · [Evan Reed · EN](https://dax9s3s2t9odi.cloudfront.net/p/atlas-6tvhkjjvsaiyzcccb878) · [Yuto Takahashi · JA](https://dax9s3s2t9odi.cloudfront.net/p/atlas-dwpjxdazdkl2tssgnriq) · [Aya Morikawa · JA](https://dax9s3s2t9odi.cloudfront.net/p/atlas-mafajpuvf0vpcsy2thtg)
+
 **Your AI Agent for evidence-backed career stories.**
 
 CareerAtlas connects projects, contributions, skills, and evidence with an **AI Agent that helps you capture experience, prepare for interviews, and answer portfolio questions with sources**. English, Simplified Chinese, and Japanese are built in.
