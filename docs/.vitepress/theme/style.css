@@ -55,6 +55,11 @@
     outline-offset: 3px;
 }
 @media (max-width: 767px) {
+    .technical-reference .vp-doc th,
+    .technical-reference .vp-doc td {
+        min-width: 10rem;
+    }
+
     .docs-language {
         width: 83px;
         margin-right: 2px;

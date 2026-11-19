@@ -8,6 +8,8 @@ CareerAtlas's **AI Agent** helps you turn notes into experience drafts, prepare 
 
 ## Two ways to use the Agent
 
+For a technical review, start with the [Laravel backend and source map](./backend.md), [data model and publication lifecycle](./data-model.md), and [testing procedures and evidence](./testing.md). These chapters connect the product behavior to its implementation.
+
 - **For you:** capture editable drafts, map requirements to evidence, prepare answers, review practice, and tailor introductions or translations.
 - **For visitors:** explore a published portfolio through Q&A and open citations to inspect the selected source context.
 

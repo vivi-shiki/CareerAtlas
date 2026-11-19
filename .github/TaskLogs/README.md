@@ -4,6 +4,7 @@ These files follow GacUI's stage markers and record reusable CareerAtlas develop
 
 | File | Purpose |
 | --- | --- |
+| [2026-11-19-backend-documentation.md](2026-11-19-backend-documentation.md) | Trilingual Laravel implementation, data lifecycle, testing and README review navigation |
 | [2026-11-19-documentation-directory-entry.md](2026-11-19-documentation-directory-entry.md) | Restore static documentation directory URLs and check them after deployment |
 | [2026-11-19-public-agent-copy.md](2026-11-19-public-agent-copy.md) | AI Agent wording in the trilingual public portfolio question panel |
 | [2026-11-19-agent-documentation.md](2026-11-19-agent-documentation.md) | AI Agent prominence in trilingual READMEs, documentation, and tutorials |

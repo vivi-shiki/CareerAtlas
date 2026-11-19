@@ -30,6 +30,9 @@ const labels = {
             'API & MCP',
             'Troubleshooting',
             'Feature coverage & roadmap',
+            'Laravel backend',
+            'Data model & publication',
+            'Testing & verification',
         ],
     },
     'zh-CN': {
@@ -60,6 +63,9 @@ const labels = {
             'API 与 MCP',
             '常见问题',
             '功能全览与路线图',
+            'Laravel 后端实现',
+            '数据模型与发布流程',
+            '测试与验证',
         ],
     },
     ja: {
@@ -90,6 +96,9 @@ const labels = {
             'API と MCP',
             'トラブルシューティング',
             '機能一覧とロードマップ',
+            'Laravel バックエンド',
+            'データモデルと公開フロー',
+            'テストと検証',
         ],
     },
 }
@@ -107,6 +116,9 @@ const pages = [
     'mcp',
     'troubleshooting',
     'roadmap',
+    'backend',
+    'data-model',
+    'testing',
 ]
 const locales = Object.fromEntries(
     Object.entries(labels).map(([locale, text]) => {
@@ -140,7 +152,7 @@ const locales = Object.fromEntries(
                                 ...pages.slice(1, 8).map((_, i) => item(i + 1)),
                             ],
                         },
-                        { text: text.dev, items: [8, 9, 10].map(item) },
+                        { text: text.dev, items: [8, 13, 14, 9, 15, 10].map(item) },
                         { text: text.reference, items: [11, 12].map(item) },
                     ],
                     outline: { label: text.outline, level: [2, 3] },

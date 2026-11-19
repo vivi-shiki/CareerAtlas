@@ -14,6 +14,36 @@ CareerAtlas 将项目、个人贡献、技能与证据连接起来，**让 AI Ag
 
 [AI Agent 上手](docs/zh-CN/ai-agent.md) · [使用指南](docs/zh-CN/index.md) · [快速上手](docs/zh-CN/quickstart.md) · [开发指南](docs/zh-CN/development.md)
 
+## Laravel 实现的后端功能
+
+PHP 8.3+（**Laravel 13 后端框架**）实际处理以下业务：
+
+- 用户认证、会话与按所有者隔离的数据访问。
+- 档案、项目、经历、技能和证据的创建与更新。
+- 输入校验、数据库事务及过期版本更新检查。
+- 显式确认、按字段选择的发布快照与访问撤销。
+- AI 队列任务、来源范围限制及审核后应用建议。
+- 业务流程、权限边界和异常处理的自动化测试。
+
+Vue 界面和开发者 MCP 共用同一套 Laravel 领域操作。[后端实现与源码导航](docs/zh-CN/backend.md)说明实际代码与设计选择。
+
+## 设计与规格文档
+
+以下说明文档均保存在本 GitHub 仓库内，无需启动应用也能阅读。
+
+| 审阅内容 | 文档 |
+| --- | --- |
+| 产品范围、已实现与规划中的功能 | [功能全览](docs/zh-CN/roadmap.md) |
+| 画面与用户操作流程 | [图文使用指南](docs/zh-CN/index.md) |
+| 整体架构与 Laravel 实现 | [技术架构](docs/zh-CN/architecture.md) · [后端实现](docs/zh-CN/backend.md) |
+| 数据库关系、确认与发布流程 | [数据模型与生命周期](docs/zh-CN/data-model.md) |
+| 权限与 AI 来源范围 | [隐私与 AI 边界](docs/zh-CN/privacy-and-ai.md) |
+| HTTP 操作与开发者集成 | [API 与 MCP](docs/zh-CN/mcp.md) |
+| 测试覆盖、预期结果与复现方法 | [测试与验证](docs/zh-CN/testing.md) |
+| 安装与运行环境 | [本地开发](docs/zh-CN/development.md) |
+
+建议阅读顺序：无需登录打开上方线上示例，查看项目与证据，再阅读后端、数据模型和测试说明。示例人物与成果均为虚构。AI 是否可用取决于运行配置，浏览公开资料不依赖模型。
+
 ## 认识你的 AI Agent
 
 - **整理与准备**：把笔记整理为可编辑的经历草稿，将要求对应到选定证据，起草回答并反馈文字练习。

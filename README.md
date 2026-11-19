@@ -14,6 +14,36 @@ CareerAtlas connects projects, contributions, skills, and evidence with an **AI 
 
 [AI Agent walkthrough](docs/en/ai-agent.md) · [User guide](docs/en/index.md) · [Quick start](docs/en/quickstart.md) · [Development](docs/en/development.md)
 
+## Backend implemented with Laravel
+
+PHP 8.3+ (**Laravel 13 backend framework**) handles the application's business operations:
+
+- User authentication, sessions and owner-scoped access to records.
+- Profile, project, experience, skill and evidence creation and updates.
+- Input validation, database transactions and checks against stale updates.
+- Explicit confirmation, selected-field publication snapshots and revocation.
+- Queued AI work, bounded source access and reviewed proposal application.
+- Automated tests for business workflows, permissions and failure handling.
+
+The Vue interface and developer MCP share the same Laravel domain operations. [Backend implementation and source map](docs/en/backend.md) explains the actual code and design choices.
+
+## Design and specification documents
+
+The following documents are included in this GitHub repository and can be read without running the application.
+
+| What to inspect | Document |
+| --- | --- |
+| Product scope and implemented versus planned features | [Feature coverage](docs/en/roadmap.md) |
+| Screens and user workflows | [Illustrated user guide](docs/en/index.md) |
+| Architecture and Laravel implementation | [Architecture](docs/en/architecture.md) · [Backend](docs/en/backend.md) |
+| Database relationships, confirmation and publication | [Data model and lifecycle](docs/en/data-model.md) |
+| Authorization and AI source boundaries | [Privacy and AI](docs/en/privacy-and-ai.md) |
+| HTTP operations and developer integration | [API and MCP](docs/en/mcp.md) |
+| Test coverage, expected results and reproducible checks | [Testing and verification](docs/en/testing.md) |
+| Installation and runtime setup | [Local development](docs/en/development.md) |
+
+Suggested reading order: open a live example above without signing in, inspect a project and its evidence, read the backend and data-model chapters, then follow the testing guide. The examples use fictional people and outcomes. AI availability depends on runtime configuration; browsing published records does not require a model.
+
 ## Meet your AI Agent
 
 - **Capture and prepare:** turn notes into editable experience drafts, map requirements to selected evidence, draft answers, and review written practice.
