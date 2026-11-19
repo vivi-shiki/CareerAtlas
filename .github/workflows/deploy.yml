@@ -107,3 +107,4 @@ jobs:
           curl --fail --silent --show-error --retry 6 --retry-delay 5 "$APP_URL/up" >/dev/null
           actual=$(curl -fsS "$APP_URL/deployment.json" | python3 -c 'import json,sys; print(json.load(sys.stdin)["revision"])')
           test "$actual" = "$GITHUB_SHA"
+          python3 deploy/check_docs.py "$APP_URL"

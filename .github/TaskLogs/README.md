@@ -4,6 +4,7 @@ These files follow GacUI's stage markers and record reusable CareerAtlas develop
 
 | File | Purpose |
 | --- | --- |
+| [2026-11-19-documentation-directory-entry.md](2026-11-19-documentation-directory-entry.md) | Restore static documentation directory URLs and check them after deployment |
 | [2026-11-19-public-agent-copy.md](2026-11-19-public-agent-copy.md) | AI Agent wording in the trilingual public portfolio question panel |
 | [2026-11-19-agent-documentation.md](2026-11-19-agent-documentation.md) | AI Agent prominence in trilingual READMEs, documentation, and tutorials |
 | [2026-11-19-reader-documentation.md](2026-11-19-reader-documentation.md) | Concise trilingual READMEs and searchable illustrated product documentation |

@@ -45,4 +45,6 @@ Restore into a new, isolated database first. Verify schema and record counts, th
 
 Operator-installed release/bootstrap scripts are a separate trusted control plane and are not silently replaced by application artifacts. Changes to those scripts require a host update. Review disk space and prune unused releases during maintenance, retaining the current and previous versions.
 
+The web server must resolve both `index.php` and `index.html` as directory indexes. Reader documentation is static: `/docs/ja/` and the other language directories must serve their built `index.html` without authentication. Changing the bootstrap template alone does not update an existing host; back up the active configuration, validate it with `nginx -t`, and reload after applying this setting. The public release check runs `deploy/check_docs.py` against the documentation root and all three languages, covering explicit indexes, directory URLs with and without trailing slashes, and query strings.
+
 Related: [Deployment contract](KB_CareerAtlas_Design_Deployment.md), [Building](../Guidelines/Building.md), [Testing](../Guidelines/Testing.md).

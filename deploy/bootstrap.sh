@@ -190,7 +190,7 @@ server {
     include /etc/nginx/careeratlas-tls.conf;
     server_name _;
     root /srv/careeratlas/current/public;
-    index index.php;
+    index index.php index.html;
     server_tokens off;
     client_max_body_size 2m;
     access_log off;
